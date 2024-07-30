@@ -15,6 +15,9 @@
 		006EA32E2C58A9C70030CFDF /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 006EA32C2C58A9C70030CFDF /* CoreData.xcdatamodeld */; };
 		006EA3302C58ABDA0030CFDF /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA32F2C58ABDA0030CFDF /* CoreDataController.swift */; };
 		006EA3362C58B2F40030CFDF /* ResignKeyboardOnDragGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3352C58B2F40030CFDF /* ResignKeyboardOnDragGesture.swift */; };
+		006EA3382C58CBE50030CFDF /* RankBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3372C58CBE50030CFDF /* RankBackground.swift */; };
+		006EA33A2C58CE600030CFDF /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3392C58CE600030CFDF /* CustomColor.swift */; };
+		006EA33D2C58D37B0030CFDF /* LuxurySongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA33C2C58D37B0030CFDF /* LuxurySongCell.swift */; };
 		0081F7152C5889B3007B49F0 /* SetoriCreatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0081F7142C5889B3007B49F0 /* SetoriCreatorApp.swift */; };
 		0081F7172C5889B3007B49F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0081F7162C5889B3007B49F0 /* ContentView.swift */; };
 		0081F7192C5889B6007B49F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0081F7182C5889B6007B49F0 /* Assets.xcassets */; };
@@ -31,6 +34,9 @@
 		006EA32D2C58A9C70030CFDF /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		006EA32F2C58ABDA0030CFDF /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		006EA3352C58B2F40030CFDF /* ResignKeyboardOnDragGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignKeyboardOnDragGesture.swift; sourceTree = "<group>"; };
+		006EA3372C58CBE50030CFDF /* RankBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankBackground.swift; sourceTree = "<group>"; };
+		006EA3392C58CE600030CFDF /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		006EA33C2C58D37B0030CFDF /* LuxurySongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxurySongCell.swift; sourceTree = "<group>"; };
 		0081F7112C5889B3007B49F0 /* SetoriCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SetoriCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0081F7142C5889B3007B49F0 /* SetoriCreatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetoriCreatorApp.swift; sourceTree = "<group>"; };
 		0081F7162C5889B3007B49F0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,8 +89,18 @@
 			isa = PBXGroup;
 			children = (
 				006EA3352C58B2F40030CFDF /* ResignKeyboardOnDragGesture.swift */,
+				006EA3372C58CBE50030CFDF /* RankBackground.swift */,
+				006EA3392C58CE600030CFDF /* CustomColor.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		006EA33B2C58D3600030CFDF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				006EA33C2C58D37B0030CFDF /* LuxurySongCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		0081F7082C5889B3007B49F0 = {
@@ -110,6 +126,7 @@
 				0081F7162C5889B3007B49F0 /* ContentView.swift */,
 				0081F7222C588BC5007B49F0 /* Views */,
 				006EA3332C58B1F50030CFDF /* ViewModel */,
+				006EA33B2C58D3600030CFDF /* Cells */,
 				006EA32B2C58A9AC0030CFDF /* DataModel */,
 				006EA3342C58B2D00030CFDF /* Helpers */,
 				0081F7182C5889B6007B49F0 /* Assets.xcassets */,
@@ -208,8 +225,11 @@
 				006EA32A2C588FFA0030CFDF /* CustomTabs.swift in Sources */,
 				006EA3282C588FBC0030CFDF /* MyPageView.swift in Sources */,
 				006EA3302C58ABDA0030CFDF /* CoreDataController.swift in Sources */,
+				006EA33A2C58CE600030CFDF /* CustomColor.swift in Sources */,
+				006EA3382C58CBE50030CFDF /* RankBackground.swift in Sources */,
 				006EA32E2C58A9C70030CFDF /* CoreData.xcdatamodeld in Sources */,
 				006EA3242C588ED70030CFDF /* AddSetListView.swift in Sources */,
+				006EA33D2C58D37B0030CFDF /* LuxurySongCell.swift in Sources */,
 				006EA3262C588FB00030CFDF /* TimeLineView.swift in Sources */,
 				0081F7242C588BD1007B49F0 /* HomeView.swift in Sources */,
 				0081F7172C5889B3007B49F0 /* ContentView.swift in Sources */,
