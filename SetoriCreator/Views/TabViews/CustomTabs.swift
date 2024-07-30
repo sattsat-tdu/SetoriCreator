@@ -1,0 +1,88 @@
+//
+//  CustomTabs.swift
+//  SetoriCreator
+//  
+//  Created by SATTSAT on 2024/07/30
+//  
+//
+
+import SwiftUI
+
+enum tabList {
+    case home
+    case mySetList
+    case timeLine
+    case mypage
+}
+
+struct CustomTabs: View {
+    
+    @Binding var selectedTab: tabList
+    
+    var body: some View {
+        HStack {
+            iconItem(
+                type: .home, 
+                icon: "house",
+                text: "ホーム"
+            )
+            Spacer(minLength: 0) //均等に最大
+            iconItem(
+                type: .mySetList,
+                icon: "rectangle.stack",
+                text: "マイセトリ"
+            )
+            Spacer(minLength: 0) //均等に最大
+
+            Button(action: {
+            }, label: {
+                Image(systemName: "plus.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40,height: 40)
+                    .foregroundStyle(.orange)
+            })
+            Spacer(minLength: 0) //均等に最大
+            
+            iconItem(
+                type: .timeLine,
+                icon: "message.and.waveform",
+                text: "タイムライン"
+            )
+            
+            Spacer(minLength: 0) //均等に最大]
+            
+            iconItem(
+                type: .mypage, 
+                icon: "person",
+                text: "マイページ"
+            )
+        }
+        .foregroundStyle(.primary)
+        .frame(height: 50)
+        .background(.background)
+    }
+    
+    @ViewBuilder
+    func iconItem(type: tabList,icon: String, text: String) -> some View {
+        Button(action: {
+            selectedTab = type
+        }, label: {
+            VStack {
+                Image(systemName: icon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20,height: 20)
+                
+                Text(text)
+                    .font(.caption2).bold()
+            }
+            .frame(maxWidth: .infinity)
+            .foregroundStyle(.primary.opacity(selectedTab == type ? 1:0.2))
+        })
+    }
+}
+
+#Preview {
+    CustomTabs(selectedTab: .constant(.home))
+}
