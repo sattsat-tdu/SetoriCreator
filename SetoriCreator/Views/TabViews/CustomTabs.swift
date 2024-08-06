@@ -12,12 +12,13 @@ enum tabList {
     case home
     case mySetList
     case timeLine
-    case mypage
+    case search
 }
 
 struct CustomTabs: View {
     
     @Binding var selectedTab: tabList
+    @State private var isShowAddSetList = false
     
     var body: some View {
         HStack {
@@ -35,6 +36,7 @@ struct CustomTabs: View {
             Spacer(minLength: 0) //均等に最大
 
             Button(action: {
+                isShowAddSetList.toggle()
             }, label: {
                 Image(systemName: "plus.circle.fill")
                     .resizable()
@@ -42,6 +44,9 @@ struct CustomTabs: View {
                     .frame(width: 40,height: 40)
                     .foregroundStyle(.orange)
             })
+            .fullScreenCover(isPresented: $isShowAddSetList) {
+                AddSetListView(isShowing: $isShowAddSetList)
+            }
             Spacer(minLength: 0) //均等に最大
             
             iconItem(
@@ -53,9 +58,9 @@ struct CustomTabs: View {
             Spacer(minLength: 0) //均等に最大]
             
             iconItem(
-                type: .mypage, 
-                icon: "person",
-                text: "マイページ"
+                type: .search,
+                icon: "magnifyingglass",
+                text: "検索"
             )
         }
         .foregroundStyle(.primary)

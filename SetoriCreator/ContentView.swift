@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @EnvironmentObject var dataController: CoreDataController
+    @StateObject private var topChartViewModel = TopChartViewModel()
     //Tab管理変数
     @State private var selectedTab:tabList = .home
     
@@ -17,12 +19,16 @@ struct ContentView: View {
             switch selectedTab {
             case .home:
                 HomeView()
+                    .environmentObject(topChartViewModel)
             case .mySetList:
                 MySetListView()
+                    .environmentObject(dataController)
             case .timeLine:
                 TimeLineView()
-            case .mypage:
-                MyPageView()
+            case .search:
+                SearchView()
+                    .resignKeyboardOnDragGesture()
+                    .environmentObject(topChartViewModel)
             }
             Divider()
             CustomTabs(selectedTab: $selectedTab)

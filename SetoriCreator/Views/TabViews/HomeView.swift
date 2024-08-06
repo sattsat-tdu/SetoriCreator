@@ -12,7 +12,7 @@ import MusicKit
 struct HomeView: View {
 
     
-    @State private var response: MusicCatalogChart<Song>? = nil
+    @EnvironmentObject var chartVM: TopChartViewModel
     
     var body: some View {
         NavigationStack {
@@ -23,16 +23,23 @@ struct HomeView: View {
                             .font(.title3).bold()
                             .foregroundStyle(.secondary)
                         
-                        if let response = response {
-//                            HStack(spacing: 20) {
-//                                ForEach(response.items) { song in
-//                                    luxurySong(song: song)
-//                                }
-//                            }
-                            //index情報が必要だったため下記を使用
+                        if let topSongs = chartVM.topSongs {
+                            let top3Songs = Array(topSongs.items.prefix(3))
                             HStack(spacing: 20) {
-                                ForEach(Array(response.items.enumerated()), id: \.element) { index, song in
+                                ForEach(Array(top3Songs.enumerated()), id: \.element.id) { index, song in
                                     LuxurySongCell(index: index + 1, song: song)
+                                }
+                            }
+                        } else {
+                            HStack(spacing: 20) {
+                                ForEach(0..<3) { num in
+                                    VStack {
+                                        LoadingCell()
+                                            .frame(width: 100,height: 100)
+                                            .clipShape(.rect(cornerRadius: 5))
+                                        LoadingCell()
+                                            .frame(height: 30)
+                                    }
                                 }
                             }
                         }
@@ -45,26 +52,6 @@ struct HomeView: View {
                 .padding()
             }
             .background(Color("backGroundColor"))
-
-            .task {
-                //View表示時に非同期処理？
-                try? await getTop3Songs()
-            }
-        }
-    }
-    
-    @MainActor
-    private func getTop3Songs() async throws {
-        var request = MusicCatalogChartsRequest(
-            kinds: [.mostPlayed], // Use kinds that are relevant for song charts.
-            types: [Song.self]
-        )
-        
-        //Top3の3曲しか必要ないのでlimit指定
-        request.limit = 3
-        let response = try await request.response()
-        if let songChart = response.songCharts.first {
-            self.response = songChart
         }
     }
 }

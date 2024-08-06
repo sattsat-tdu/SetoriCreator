@@ -7,10 +7,12 @@
         <relationship name="setlist" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SetList" inverseName="coresong" inverseEntity="SetList"/>
     </entity>
     <entity name="SetList" representedClassName="SetList" syncable="YES" codeGenerationType="class">
+        <attribute name="artistid" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="songsid" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformerName"/>
         <relationship name="coresong" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoreSong" inverseName="setlist" inverseEntity="CoreSong"/>
     </entity>
 </model>

@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import MusicKit
 
 class CoreDataController: ObservableObject {
     
@@ -46,13 +47,15 @@ class CoreDataController: ObservableObject {
         save()  //追加したSongをセーブする。
     }
     
-    func createSetList(name: String, image: Data) {
+    func createSetList(name: String, image: Data, artistID: String, songIDs: [String]) {
         //PlayListを新たに作成
         let newSetList = SetList(context: saveContext)
         newSetList.id = UUID()     //ユニークID
         newSetList.name = name     //プレイリスト名
         newSetList.image = image   //写真
         newSetList.date = Date()   //日付を設定（作成順に並び替えるため）
+        newSetList.artistid = artistID
+        newSetList.songsid = songIDs as NSObject
         
         save()
     }

@@ -18,11 +18,27 @@
 		006EA3382C58CBE50030CFDF /* RankBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3372C58CBE50030CFDF /* RankBackground.swift */; };
 		006EA33A2C58CE600030CFDF /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3392C58CE600030CFDF /* CustomColor.swift */; };
 		006EA33D2C58D37B0030CFDF /* LuxurySongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA33C2C58D37B0030CFDF /* LuxurySongCell.swift */; };
+		006EA3412C58FABD0030CFDF /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3402C58FABD0030CFDF /* LoadingCell.swift */; };
+		007320602C59118000553A8F /* MusicSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0073205F2C59118000553A8F /* MusicSearchViewModel.swift */; };
+		007320642C59BBDF00553A8F /* SelectArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007320632C59BBDF00553A8F /* SelectArtistView.swift */; };
+		007320682C59C38100553A8F /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007320672C59C38100553A8F /* SongCell.swift */; };
+		0073206A2C59C38C00553A8F /* ArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007320692C59C38C00553A8F /* ArtistCell.swift */; };
 		0081F7152C5889B3007B49F0 /* SetoriCreatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0081F7142C5889B3007B49F0 /* SetoriCreatorApp.swift */; };
 		0081F7172C5889B3007B49F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0081F7162C5889B3007B49F0 /* ContentView.swift */; };
 		0081F7192C5889B6007B49F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0081F7182C5889B6007B49F0 /* Assets.xcassets */; };
 		0081F71C2C5889B6007B49F0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0081F71B2C5889B6007B49F0 /* Preview Assets.xcassets */; };
 		0081F7242C588BD1007B49F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0081F7232C588BD1007B49F0 /* HomeView.swift */; };
+		00B911F92C5B219600E0D2F1 /* CreateSetoriView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B911F82C5B219600E0D2F1 /* CreateSetoriView.swift */; };
+		00B911FB2C5B377C00E0D2F1 /* SelectSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B911FA2C5B377C00E0D2F1 /* SelectSongsView.swift */; };
+		00B911FD2C5BA45400E0D2F1 /* SongsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B911FC2C5BA45400E0D2F1 /* SongsListView.swift */; };
+		00B911FF2C5C65D000E0D2F1 /* TopChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B911FE2C5C65D000E0D2F1 /* TopChartViewModel.swift */; };
+		00B912012C5E63A800E0D2F1 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B912002C5E63A800E0D2F1 /* SearchView.swift */; };
+		00B912032C5E777000E0D2F1 /* SetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B912022C5E777000E0D2F1 /* SetListViewModel.swift */; };
+		00B912052C5EEF9B00E0D2F1 /* ArtistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B912042C5EEF9B00E0D2F1 /* ArtistDetailView.swift */; };
+		00B912072C5EEFEC00E0D2F1 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B912062C5EEFEC00E0D2F1 /* Structs.swift */; };
+		00FECC872C6117DE00A427D3 /* SetListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FECC862C6117DE00A427D3 /* SetListCell.swift */; };
+		00FECC892C619BA700A427D3 /* SetListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FECC882C619BA700A427D3 /* SetListDetailView.swift */; };
+		00FECC8B2C61A35B00A427D3 /* GetItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FECC8A2C61A35B00A427D3 /* GetItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,12 +53,28 @@
 		006EA3372C58CBE50030CFDF /* RankBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankBackground.swift; sourceTree = "<group>"; };
 		006EA3392C58CE600030CFDF /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		006EA33C2C58D37B0030CFDF /* LuxurySongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxurySongCell.swift; sourceTree = "<group>"; };
+		006EA3402C58FABD0030CFDF /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
+		0073205F2C59118000553A8F /* MusicSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSearchViewModel.swift; sourceTree = "<group>"; };
+		007320632C59BBDF00553A8F /* SelectArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectArtistView.swift; sourceTree = "<group>"; };
+		007320672C59C38100553A8F /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		007320692C59C38C00553A8F /* ArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCell.swift; sourceTree = "<group>"; };
 		0081F7112C5889B3007B49F0 /* SetoriCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SetoriCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0081F7142C5889B3007B49F0 /* SetoriCreatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetoriCreatorApp.swift; sourceTree = "<group>"; };
 		0081F7162C5889B3007B49F0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0081F7182C5889B6007B49F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0081F71B2C5889B6007B49F0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0081F7232C588BD1007B49F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		00B911F82C5B219600E0D2F1 /* CreateSetoriView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetoriView.swift; sourceTree = "<group>"; };
+		00B911FA2C5B377C00E0D2F1 /* SelectSongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSongsView.swift; sourceTree = "<group>"; };
+		00B911FC2C5BA45400E0D2F1 /* SongsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListView.swift; sourceTree = "<group>"; };
+		00B911FE2C5C65D000E0D2F1 /* TopChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartViewModel.swift; sourceTree = "<group>"; };
+		00B912002C5E63A800E0D2F1 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		00B912022C5E777000E0D2F1 /* SetListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListViewModel.swift; sourceTree = "<group>"; };
+		00B912042C5EEF9B00E0D2F1 /* ArtistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetailView.swift; sourceTree = "<group>"; };
+		00B912062C5EEFEC00E0D2F1 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		00FECC862C6117DE00A427D3 /* SetListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListCell.swift; sourceTree = "<group>"; };
+		00FECC882C619BA700A427D3 /* SetListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListDetailView.swift; sourceTree = "<group>"; };
+		00FECC8A2C61A35B00A427D3 /* GetItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +96,7 @@
 				006EA3232C588ED70030CFDF /* AddSetListView.swift */,
 				006EA3252C588FB00030CFDF /* TimeLineView.swift */,
 				006EA3272C588FBC0030CFDF /* MyPageView.swift */,
+				00B912002C5E63A800E0D2F1 /* SearchView.swift */,
 				006EA3292C588FFA0030CFDF /* CustomTabs.swift */,
 			);
 			path = TabViews;
@@ -81,6 +114,10 @@
 		006EA3332C58B1F50030CFDF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0073205F2C59118000553A8F /* MusicSearchViewModel.swift */,
+				00B911FE2C5C65D000E0D2F1 /* TopChartViewModel.swift */,
+				00B912022C5E777000E0D2F1 /* SetListViewModel.swift */,
+				00FECC8A2C61A35B00A427D3 /* GetItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -91,6 +128,7 @@
 				006EA3352C58B2F40030CFDF /* ResignKeyboardOnDragGesture.swift */,
 				006EA3372C58CBE50030CFDF /* RankBackground.swift */,
 				006EA3392C58CE600030CFDF /* CustomColor.swift */,
+				00B912062C5EEFEC00E0D2F1 /* Structs.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -99,6 +137,12 @@
 			isa = PBXGroup;
 			children = (
 				006EA33C2C58D37B0030CFDF /* LuxurySongCell.swift */,
+				006EA3402C58FABD0030CFDF /* LoadingCell.swift */,
+				007320672C59C38100553A8F /* SongCell.swift */,
+				007320692C59C38C00553A8F /* ArtistCell.swift */,
+				00FECC862C6117DE00A427D3 /* SetListCell.swift */,
+				00FECC882C619BA700A427D3 /* SetListDetailView.swift */,
+				00B912042C5EEF9B00E0D2F1 /* ArtistDetailView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -147,6 +191,10 @@
 			isa = PBXGroup;
 			children = (
 				006EA3202C588E340030CFDF /* TabViews */,
+				007320632C59BBDF00553A8F /* SelectArtistView.swift */,
+				00B911FA2C5B377C00E0D2F1 /* SelectSongsView.swift */,
+				00B911F82C5B219600E0D2F1 /* CreateSetoriView.swift */,
+				00B911FC2C5BA45400E0D2F1 /* SongsListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,18 +272,34 @@
 			files = (
 				006EA32A2C588FFA0030CFDF /* CustomTabs.swift in Sources */,
 				006EA3282C588FBC0030CFDF /* MyPageView.swift in Sources */,
+				00FECC8B2C61A35B00A427D3 /* GetItemViewModel.swift in Sources */,
 				006EA3302C58ABDA0030CFDF /* CoreDataController.swift in Sources */,
+				00B912032C5E777000E0D2F1 /* SetListViewModel.swift in Sources */,
 				006EA33A2C58CE600030CFDF /* CustomColor.swift in Sources */,
+				00B912012C5E63A800E0D2F1 /* SearchView.swift in Sources */,
+				0073206A2C59C38C00553A8F /* ArtistCell.swift in Sources */,
 				006EA3382C58CBE50030CFDF /* RankBackground.swift in Sources */,
+				00FECC872C6117DE00A427D3 /* SetListCell.swift in Sources */,
 				006EA32E2C58A9C70030CFDF /* CoreData.xcdatamodeld in Sources */,
+				00FECC892C619BA700A427D3 /* SetListDetailView.swift in Sources */,
 				006EA3242C588ED70030CFDF /* AddSetListView.swift in Sources */,
 				006EA33D2C58D37B0030CFDF /* LuxurySongCell.swift in Sources */,
+				00B911FB2C5B377C00E0D2F1 /* SelectSongsView.swift in Sources */,
+				007320602C59118000553A8F /* MusicSearchViewModel.swift in Sources */,
+				00B911F92C5B219600E0D2F1 /* CreateSetoriView.swift in Sources */,
 				006EA3262C588FB00030CFDF /* TimeLineView.swift in Sources */,
+				006EA3412C58FABD0030CFDF /* LoadingCell.swift in Sources */,
 				0081F7242C588BD1007B49F0 /* HomeView.swift in Sources */,
+				007320642C59BBDF00553A8F /* SelectArtistView.swift in Sources */,
+				00B912072C5EEFEC00E0D2F1 /* Structs.swift in Sources */,
 				0081F7172C5889B3007B49F0 /* ContentView.swift in Sources */,
 				0081F7152C5889B3007B49F0 /* SetoriCreatorApp.swift in Sources */,
 				006EA3362C58B2F40030CFDF /* ResignKeyboardOnDragGesture.swift in Sources */,
+				00B911FF2C5C65D000E0D2F1 /* TopChartViewModel.swift in Sources */,
+				00B912052C5EEF9B00E0D2F1 /* ArtistDetailView.swift in Sources */,
+				007320682C59C38100553A8F /* SongCell.swift in Sources */,
 				006EA31F2C588E310030CFDF /* MySetListView.swift in Sources */,
+				00B911FD2C5BA45400E0D2F1 /* SongsListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

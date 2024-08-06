@@ -18,10 +18,14 @@ struct SetoriCreatorApp: App {
         }
     }
     
+    //CoreData参照のため
+    @StateObject private var dataController = CoreDataController()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(dataController) // ここで CoreDataController を提供
         }
     }
 }
