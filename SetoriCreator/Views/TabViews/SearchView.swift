@@ -85,7 +85,6 @@ struct SearchView: View {
                                 }
                             }
                             .listRowInsets(EdgeInsets())  //List内の余白を削除
-                            .listRowBackground(Color.clear)
                         }
                         
                     }

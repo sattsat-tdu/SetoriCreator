@@ -17,7 +17,8 @@ struct SetoriCreatorApp: App {
             await MusicAuthorization.request()
         }
     }
-    
+    //ダークモード判定保存変数
+    @AppStorage(wrappedValue: 0, "appearanceMode") var appearanceMode
     //CoreData参照のため
     @StateObject private var dataController = CoreDataController()
     
@@ -26,6 +27,7 @@ struct SetoriCreatorApp: App {
             ContentView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController) // ここで CoreDataController を提供
+                .preferredColorScheme(AppearanceModeSetting(rawValue: appearanceMode)?.colorScheme) //ダークモード管理
         }
     }
 }

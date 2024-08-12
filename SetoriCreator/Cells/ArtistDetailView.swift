@@ -21,9 +21,10 @@ struct ArtistDetailView: View {
         ScrollView(showsIndicators: false) {
             ArtWork()
             VStack {
+                Text("トップソング")
+                    .fontWeight(.semibold)
                 if let topSongs = self.topSongs {
                     ForEach(topSongs, id: \.self) { song in
-                        Divider()
                         if mode == .plus {
                             SongCell(song: song, mode: mode)
                                 .environmentObject(setListVM)
@@ -32,17 +33,21 @@ struct ArtistDetailView: View {
                         }
                     }
                 } else {
-                    ForEach(0..<3) { num in
-                        Divider()
+                    ForEach(0 ..< 5) { index in
                         HStack {
+                            Text("\(index + 1)")
+                                .font(.headline)
+                            Spacer()
                             LoadingCell()
-                                .frame(width: 50)
+                                .frame(width: 40, height: 40)
                                 .clipShape(.rect(cornerRadius: 5))
                             LoadingCell()
                                 .frame(maxWidth: .infinity)
                         }
-                        .frame(height: 30)
+                        .id(index)
+                        .frame(height: 40)
                     }
+                    .padding()
                 }
             }
         }

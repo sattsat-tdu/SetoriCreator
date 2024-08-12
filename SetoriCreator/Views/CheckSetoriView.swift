@@ -9,7 +9,7 @@
 import SwiftUI
 import MusicKit
 
-struct CreateSetoriView: View {
+struct CheckSetoriView: View {
     
     @EnvironmentObject var cdc: CoreDataController
     
@@ -48,20 +48,21 @@ struct CreateSetoriView: View {
                 .navigationTitle("生成結果")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
+                    ToolbarItem(placement: .cancellationAction){
+                        Button(action: {
+                            flg.toggle()
+                        }, label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                        })
+                    }
                     //編集ボタン、右上に
                     ToolbarItem(placement: .confirmationAction){
                         EditButton()
                     }
                     
                     ToolbarItemGroup(placement: .bottomBar) {
-                        Button(action: {
-                            flg = false
-                        }, label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                        })
-                        Spacer()
                         Button(action: {
                             resultSongs = nil
                             Task {
@@ -70,14 +71,9 @@ struct CreateSetoriView: View {
                         }, label: {
                             Text("再生成")
                                 .font(.headline)
-                                .foregroundStyle(.primary)
-                                .padding()
-                                .frame(maxWidth: .infinity,alignment: .center)
-                                .background()
-                                .clipShape(.rect(cornerRadius: 8))
+                                .foregroundStyle(.red)
                         })
                         .frame(height: 40)
-                        Spacer()
                         Button(action: {
                             if let songs = resultSongs{
                                 let songIDs = songs.map { $0.id.rawValue } // Songのidを抽出
@@ -95,13 +91,7 @@ struct CreateSetoriView: View {
                         }, label: {
                             Text("保存する")
                                 .font(.headline)
-                                .foregroundStyle(.black)
-                                .padding()
-                                .frame(maxWidth: .infinity,alignment: .center)
-                                .background(.orange)
-                                .clipShape(.rect(cornerRadius: 8))
                         })
-                        .frame(height: 40)
                     }
                 }
             } else {

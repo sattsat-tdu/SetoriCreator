@@ -42,10 +42,10 @@ struct CustomTabs: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 40,height: 40)
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(themeColor)
             })
             .fullScreenCover(isPresented: $isShowAddSetList) {
-                AddSetListView(isShowing: $isShowAddSetList)
+                CreateSetListView(isShowing: $isShowAddSetList)
             }
             Spacer(minLength: 0) //均等に最大
             
@@ -83,7 +83,7 @@ struct CustomTabs: View {
                     .font(.caption2).bold()
             }
             .frame(maxWidth: .infinity)
-            .foregroundStyle(.primary.opacity(selectedTab == type ? 1:0.2))
+            .foregroundStyle(.primary.opacity(selectedTab == type ? 1:0.3))
         })
     }
 }

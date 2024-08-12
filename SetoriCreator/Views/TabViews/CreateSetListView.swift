@@ -9,8 +9,9 @@
 import SwiftUI
 import MusicKit
 import PhotosUI
+import AlertKit
 
-struct AddSetListView: View {
+struct CreateSetListView: View {
     @Binding var isShowing: Bool
     @StateObject private var viewModel = MusicSearchViewModel()
     @EnvironmentObject var cdc: CoreDataController
@@ -57,7 +58,7 @@ struct AddSetListView: View {
                             .clipShape(.rect(cornerRadius: 8))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
-                                    .stroke(isAuto ? .orange : .gray.opacity(0.2), lineWidth: 2)
+                                    .stroke(isAuto ? themeColor : .gray.opacity(0.2), lineWidth: 2)
                             )
                         })
                         
@@ -79,7 +80,7 @@ struct AddSetListView: View {
                             .clipShape(.rect(cornerRadius: 8))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
-                                    .stroke(isAuto ? .gray.opacity(0.2) : .orange, lineWidth: 2)
+                                    .stroke(isAuto ? .gray.opacity(0.2) : themeColor, lineWidth: 2)
                             )
                         })
                     }
@@ -113,7 +114,7 @@ struct AddSetListView: View {
                             }
                             .overlay(
                                 Circle()
-                                    .stroke(selectedImageData == nil ? .gray.opacity(0.2) : .orange, lineWidth: 2)
+                                    .stroke(selectedImageData == nil ? .gray.opacity(0.2) : themeColor, lineWidth: 2)
                             )
                         }
                         .padding(.trailing)
@@ -145,6 +146,9 @@ struct AddSetListView: View {
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(.gray.opacity(0.2), lineWidth: 2)
                         )
+                    Text("※未記入の場合は日付が名前となります。")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
                     ////おまかせかカスタムでの詳細設定
                     VStack {
                         if isAuto {
@@ -160,7 +164,7 @@ struct AddSetListView: View {
                                     .clipShape(.rect(cornerRadius: 8))
                                     .overlay {
                                         RoundedRectangle(cornerRadius: 8)
-                                            .stroke(.orange, lineWidth: 2)
+                                            .stroke(themeColor, lineWidth: 2)
                                     }
                                 } else {
                                     HStack(spacing: 15) {
@@ -205,7 +209,7 @@ struct AddSetListView: View {
                                         .scaledToFit()
                                         .frame(width: 30)
                                 })
-                                .foregroundStyle(totalSongs < 3 ? .gray : .orange)
+                                .foregroundStyle(totalSongs < 3 ? .gray : themeColor)
                                 .disabled(totalSongs < 3)
                                 
                                 Picker("",selection: $totalSongs) {
@@ -228,7 +232,7 @@ struct AddSetListView: View {
                                         .scaledToFit()
                                         .frame(width: 30)
                                 })
-                                .foregroundStyle(totalSongs > 49 ? .gray : .orange)
+                                .foregroundStyle(totalSongs > 49 ? .gray : themeColor)
                                 .disabled(totalSongs > 49)
                             }
                             .padding()
@@ -238,6 +242,37 @@ struct AddSetListView: View {
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.gray.opacity(0.2), lineWidth: 2)
                             }
+                            Button(action: {
+                                if selectedArtist != nil {
+                                    createSetoriFlg = true
+                                } else {
+                                    AlertKitAPI.present(
+                                        title: "アーティストを指定してください。",
+                                        icon: .error,
+                                        style: .iOS16AppleMusic,
+                                        haptic: .error
+                                    )
+                                }
+                            }, label: {
+                                Label("生成する", systemImage: "list.triangle")
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
+                                    .padding()
+                                    .frame(maxWidth: .infinity,alignment: .center)
+                                    .background(themeColor)
+                                    .clipShape(.rect(cornerRadius: 8))
+                            })
+                            .padding(.top)
+                            .fullScreenCover(isPresented: $createSetoriFlg) {
+                                CheckSetoriView(
+                                    artist: selectedArtist!,
+                                    totalSongs: totalSongs,
+                                    name: setListName(name),
+                                    imageData: selectedImageData ?? Data(),
+                                    flg: $createSetoriFlg,
+                                    parentflg: $isShowing
+                                )
+                            }
                         } else {
                             //セトリに2曲以上収録されていたら詳細表示
                             if songs.count >= 2 {
@@ -246,7 +281,7 @@ struct AddSetListView: View {
                                     .background()
                                     .overlay {
                                         RoundedRectangle(cornerRadius: 8)
-                                            .stroke(.orange, lineWidth: 2)
+                                            .stroke(themeColor, lineWidth: 2)
                                     }
                             }
                             //カスタム選択時のView
@@ -279,30 +314,48 @@ struct AddSetListView: View {
                                     .resignKeyboardOnDragGesture()
                                 //↑ドラッグしたらfocusを閉じる
                             }
+                            
+                            Button(action: {
+                                if songs.count >= 2 {
+                                    let songIDs = songs.map {$0.id.rawValue} // Songのidを抽出
+                                    cdc.createSetList(
+                                        name: setListName(name),
+                                        image: selectedImageData ?? Data(),
+                                        artistID: "",
+                                        songIDs: songIDs)
+                                    isShowing.toggle()
+                                } else {
+                                    AlertKitAPI.present(
+                                        title: "2曲以上選択してください。",
+                                        icon: .error,
+                                        style: .iOS16AppleMusic,
+                                        haptic: .error
+                                    )
+                                }
+
+                            }, label: {
+                                Label("保存する", systemImage: "square.and.arrow.down")
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
+                                    .padding()
+                                    .frame(maxWidth: .infinity,alignment: .center)
+                                    .background(themeColor)
+                                    .clipShape(.rect(cornerRadius: 8))
+                            })
+                            .padding(.top)
+                            .fullScreenCover(isPresented: $createSetoriFlg) {
+                                CheckSetoriView(
+                                    artist: selectedArtist!,
+                                    totalSongs: totalSongs,
+                                    name: name,
+                                    imageData: selectedImageData ?? Data(),
+                                    flg: $createSetoriFlg,
+                                    parentflg: $isShowing
+                                )
+                            }
                         }
                         
-                        Button(action: {
-                            createSetoriFlg = true
-                        }, label: {
-                            Label("作成する", systemImage: "list.triangle")
-                                .font(.headline)
-                                .foregroundStyle(.black)
-                                .padding()
-                                .frame(maxWidth: .infinity,alignment: .center)
-                                .background(.orange)
-                                .clipShape(.rect(cornerRadius: 8))
-                        })
-                        .padding(.top)
-                        .fullScreenCover(isPresented: $createSetoriFlg) {
-                            CreateSetoriView(
-                                artist: selectedArtist!,
-                                totalSongs: totalSongs,
-                                name: name,
-                                imageData: selectedImageData ?? Data(),
-                                flg: $createSetoriFlg,
-                                parentflg: $isShowing
-                            )
-                        }
+
                     }
                     .animation(.spring(), value: isAuto)
                     .foregroundStyle(.primary)
@@ -334,8 +387,22 @@ struct AddSetListView: View {
         .background()
         Divider()
     }
+    
+    func setListName(_ name: String) -> String {
+        if name != "" {
+            return name
+        } else {
+            let date = Date()
+             
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "ja_JP")
+            dateFormatter.dateStyle = .medium
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            return dateFormatter.string(from: date)
+        }
+    }
 }
 
 #Preview {
-    AddSetListView(isShowing: .constant(true))
+    CreateSetListView(isShowing: .constant(true))
 }

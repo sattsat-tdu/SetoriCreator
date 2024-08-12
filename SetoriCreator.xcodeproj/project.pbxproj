@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0040CBCD2C61FF3300D27612 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0040CBCC2C61FF3300D27612 /* AlertKit */; };
+		0040CBCF2C63448A00D27612 /* AddToSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBCE2C63448A00D27612 /* AddToSetListView.swift */; };
+		0040CBD12C64876E00D27612 /* EditSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBD02C64876E00D27612 /* EditSetListView.swift */; };
+		0040CBD32C64BC5E00D27612 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBD22C64BC5E00D27612 /* SettingView.swift */; };
+		0040CBD52C64C8A900D27612 /* ShowTopSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBD42C64C8A900D27612 /* ShowTopSongsView.swift */; };
+		0040CBD92C65BF0200D27612 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBD82C65BF0200D27612 /* SafariView.swift */; };
+		0040CBDB2C67BDA900D27612 /* WalkThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBDA2C67BDA900D27612 /* WalkThroughView.swift */; };
 		006EA31F2C588E310030CFDF /* MySetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA31E2C588E310030CFDF /* MySetListView.swift */; };
-		006EA3242C588ED70030CFDF /* AddSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3232C588ED70030CFDF /* AddSetListView.swift */; };
+		006EA3242C588ED70030CFDF /* CreateSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3232C588ED70030CFDF /* CreateSetListView.swift */; };
 		006EA3262C588FB00030CFDF /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3252C588FB00030CFDF /* TimeLineView.swift */; };
 		006EA3282C588FBC0030CFDF /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3272C588FBC0030CFDF /* MyPageView.swift */; };
 		006EA32A2C588FFA0030CFDF /* CustomTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3292C588FFA0030CFDF /* CustomTabs.swift */; };
@@ -28,7 +35,7 @@
 		0081F7192C5889B6007B49F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0081F7182C5889B6007B49F0 /* Assets.xcassets */; };
 		0081F71C2C5889B6007B49F0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0081F71B2C5889B6007B49F0 /* Preview Assets.xcassets */; };
 		0081F7242C588BD1007B49F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0081F7232C588BD1007B49F0 /* HomeView.swift */; };
-		00B911F92C5B219600E0D2F1 /* CreateSetoriView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B911F82C5B219600E0D2F1 /* CreateSetoriView.swift */; };
+		00B911F92C5B219600E0D2F1 /* CheckSetoriView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B911F82C5B219600E0D2F1 /* CheckSetoriView.swift */; };
 		00B911FB2C5B377C00E0D2F1 /* SelectSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B911FA2C5B377C00E0D2F1 /* SelectSongsView.swift */; };
 		00B911FD2C5BA45400E0D2F1 /* SongsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B911FC2C5BA45400E0D2F1 /* SongsListView.swift */; };
 		00B911FF2C5C65D000E0D2F1 /* TopChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B911FE2C5C65D000E0D2F1 /* TopChartViewModel.swift */; };
@@ -42,8 +49,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0040CBCE2C63448A00D27612 /* AddToSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToSetListView.swift; sourceTree = "<group>"; };
+		0040CBD02C64876E00D27612 /* EditSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSetListView.swift; sourceTree = "<group>"; };
+		0040CBD22C64BC5E00D27612 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		0040CBD42C64C8A900D27612 /* ShowTopSongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTopSongsView.swift; sourceTree = "<group>"; };
+		0040CBD82C65BF0200D27612 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		0040CBDA2C67BDA900D27612 /* WalkThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughView.swift; sourceTree = "<group>"; };
 		006EA31E2C588E310030CFDF /* MySetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySetListView.swift; sourceTree = "<group>"; };
-		006EA3232C588ED70030CFDF /* AddSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetListView.swift; sourceTree = "<group>"; };
+		006EA3232C588ED70030CFDF /* CreateSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetListView.swift; sourceTree = "<group>"; };
 		006EA3252C588FB00030CFDF /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
 		006EA3272C588FBC0030CFDF /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		006EA3292C588FFA0030CFDF /* CustomTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabs.swift; sourceTree = "<group>"; };
@@ -64,7 +77,7 @@
 		0081F7182C5889B6007B49F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0081F71B2C5889B6007B49F0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0081F7232C588BD1007B49F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		00B911F82C5B219600E0D2F1 /* CreateSetoriView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetoriView.swift; sourceTree = "<group>"; };
+		00B911F82C5B219600E0D2F1 /* CheckSetoriView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSetoriView.swift; sourceTree = "<group>"; };
 		00B911FA2C5B377C00E0D2F1 /* SelectSongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSongsView.swift; sourceTree = "<group>"; };
 		00B911FC2C5BA45400E0D2F1 /* SongsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListView.swift; sourceTree = "<group>"; };
 		00B911FE2C5C65D000E0D2F1 /* TopChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartViewModel.swift; sourceTree = "<group>"; };
@@ -82,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0040CBCD2C61FF3300D27612 /* AlertKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +107,7 @@
 			children = (
 				0081F7232C588BD1007B49F0 /* HomeView.swift */,
 				006EA31E2C588E310030CFDF /* MySetListView.swift */,
-				006EA3232C588ED70030CFDF /* AddSetListView.swift */,
+				006EA3232C588ED70030CFDF /* CreateSetListView.swift */,
 				006EA3252C588FB00030CFDF /* TimeLineView.swift */,
 				006EA3272C588FBC0030CFDF /* MyPageView.swift */,
 				00B912002C5E63A800E0D2F1 /* SearchView.swift */,
@@ -142,7 +156,9 @@
 				007320692C59C38C00553A8F /* ArtistCell.swift */,
 				00FECC862C6117DE00A427D3 /* SetListCell.swift */,
 				00FECC882C619BA700A427D3 /* SetListDetailView.swift */,
+				0040CBD02C64876E00D27612 /* EditSetListView.swift */,
 				00B912042C5EEF9B00E0D2F1 /* ArtistDetailView.swift */,
+				0040CBD82C65BF0200D27612 /* SafariView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -193,8 +209,12 @@
 				006EA3202C588E340030CFDF /* TabViews */,
 				007320632C59BBDF00553A8F /* SelectArtistView.swift */,
 				00B911FA2C5B377C00E0D2F1 /* SelectSongsView.swift */,
-				00B911F82C5B219600E0D2F1 /* CreateSetoriView.swift */,
+				00B911F82C5B219600E0D2F1 /* CheckSetoriView.swift */,
 				00B911FC2C5BA45400E0D2F1 /* SongsListView.swift */,
+				0040CBCE2C63448A00D27612 /* AddToSetListView.swift */,
+				0040CBD22C64BC5E00D27612 /* SettingView.swift */,
+				0040CBD42C64C8A900D27612 /* ShowTopSongsView.swift */,
+				0040CBDA2C67BDA900D27612 /* WalkThroughView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +235,9 @@
 			dependencies = (
 			);
 			name = SetoriCreator;
+			packageProductDependencies = (
+				0040CBCC2C61FF3300D27612 /* AlertKit */,
+			);
 			productName = SetoriCreator;
 			productReference = 0081F7112C5889B3007B49F0 /* SetoriCreator.app */;
 			productType = "com.apple.product-type.application";
@@ -244,6 +267,9 @@
 				ja,
 			);
 			mainGroup = 0081F7082C5889B3007B49F0;
+			packageReferences = (
+				0040CBCB2C61FF3300D27612 /* XCRemoteSwiftPackageReference "AlertKit" */,
+			);
 			productRefGroup = 0081F7122C5889B3007B49F0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -276,30 +302,36 @@
 				006EA3302C58ABDA0030CFDF /* CoreDataController.swift in Sources */,
 				00B912032C5E777000E0D2F1 /* SetListViewModel.swift in Sources */,
 				006EA33A2C58CE600030CFDF /* CustomColor.swift in Sources */,
+				0040CBCF2C63448A00D27612 /* AddToSetListView.swift in Sources */,
+				0040CBDB2C67BDA900D27612 /* WalkThroughView.swift in Sources */,
 				00B912012C5E63A800E0D2F1 /* SearchView.swift in Sources */,
 				0073206A2C59C38C00553A8F /* ArtistCell.swift in Sources */,
 				006EA3382C58CBE50030CFDF /* RankBackground.swift in Sources */,
 				00FECC872C6117DE00A427D3 /* SetListCell.swift in Sources */,
 				006EA32E2C58A9C70030CFDF /* CoreData.xcdatamodeld in Sources */,
 				00FECC892C619BA700A427D3 /* SetListDetailView.swift in Sources */,
-				006EA3242C588ED70030CFDF /* AddSetListView.swift in Sources */,
+				006EA3242C588ED70030CFDF /* CreateSetListView.swift in Sources */,
 				006EA33D2C58D37B0030CFDF /* LuxurySongCell.swift in Sources */,
 				00B911FB2C5B377C00E0D2F1 /* SelectSongsView.swift in Sources */,
+				0040CBD52C64C8A900D27612 /* ShowTopSongsView.swift in Sources */,
 				007320602C59118000553A8F /* MusicSearchViewModel.swift in Sources */,
-				00B911F92C5B219600E0D2F1 /* CreateSetoriView.swift in Sources */,
+				00B911F92C5B219600E0D2F1 /* CheckSetoriView.swift in Sources */,
 				006EA3262C588FB00030CFDF /* TimeLineView.swift in Sources */,
 				006EA3412C58FABD0030CFDF /* LoadingCell.swift in Sources */,
 				0081F7242C588BD1007B49F0 /* HomeView.swift in Sources */,
+				0040CBD32C64BC5E00D27612 /* SettingView.swift in Sources */,
 				007320642C59BBDF00553A8F /* SelectArtistView.swift in Sources */,
 				00B912072C5EEFEC00E0D2F1 /* Structs.swift in Sources */,
 				0081F7172C5889B3007B49F0 /* ContentView.swift in Sources */,
 				0081F7152C5889B3007B49F0 /* SetoriCreatorApp.swift in Sources */,
+				0040CBD12C64876E00D27612 /* EditSetListView.swift in Sources */,
 				006EA3362C58B2F40030CFDF /* ResignKeyboardOnDragGesture.swift in Sources */,
 				00B911FF2C5C65D000E0D2F1 /* TopChartViewModel.swift in Sources */,
 				00B912052C5EEF9B00E0D2F1 /* ArtistDetailView.swift in Sources */,
 				007320682C59C38100553A8F /* SongCell.swift in Sources */,
 				006EA31F2C588E310030CFDF /* MySetListView.swift in Sources */,
 				00B911FD2C5BA45400E0D2F1 /* SongsListView.swift in Sources */,
+				0040CBD92C65BF0200D27612 /* SafariView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,12 +468,14 @@
 				DEVELOPMENT_TEAM = T9UM9Z6XFV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "セトリ作成";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "アーティストや曲の検索に使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -466,12 +500,14 @@
 				DEVELOPMENT_TEAM = T9UM9Z6XFV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "セトリ作成";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "アーティストや曲の検索に使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -507,6 +543,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0040CBCB2C61FF3300D27612 /* XCRemoteSwiftPackageReference "AlertKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparrowcode/AlertKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0040CBCC2C61FF3300D27612 /* AlertKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0040CBCB2C61FF3300D27612 /* XCRemoteSwiftPackageReference "AlertKit" */;
+			productName = AlertKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		006EA32C2C58A9C70030CFDF /* CoreData.xcdatamodeld */ = {

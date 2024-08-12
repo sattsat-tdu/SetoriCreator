@@ -8,6 +8,7 @@
 
 import CoreData
 import MusicKit
+import AlertKit
 
 class CoreDataController: ObservableObject {
     
@@ -36,17 +37,6 @@ class CoreDataController: ObservableObject {
         }
     }
     
-    func createSong(songId:String ,title:String, artist: String) {
-        
-        //Songを新たに作成
-        let newSong = CoreSong(context: saveContext)
-        newSong.songid = songId     //曲ID
-        newSong.title = title   //曲名
-        newSong.artist = artist //アーティスト名
-        
-        save()  //追加したSongをセーブする。
-    }
-    
     func createSetList(name: String, image: Data, artistID: String, songIDs: [String]) {
         //PlayListを新たに作成
         let newSetList = SetList(context: saveContext)
@@ -57,6 +47,86 @@ class CoreDataController: ObservableObject {
         newSetList.artistid = artistID
         newSetList.songsid = songIDs as NSObject
         
+        save()
+        
+        AlertKitAPI.present(
+            title: "\(name)を作成しました！",
+            icon: .done,
+            style: .iOS17AppleMusic,
+            haptic: .success
+        )
+    }
+    
+    func updateSetList(setList: SetList, name: String, image: Data) {
+        setList.name = name
+        setList.image = image
+        
+        save()
+        
+        AlertKitAPI.present(
+            title: "\(setList.name ?? "setListがnil")を更新しました",
+            icon: .done,
+            style: .iOS17AppleMusic,
+            haptic: .success
+        )
+    }
+    
+    //並び替えや削除情報をアップデート
+    func updateSongs(setList: SetList, songIDs: [String]) {
+        setList.songsid = songIDs as NSObject
+        save()
+        AlertKitAPI.present(
+            title: "\(setList.name ?? "setListがnil")を更新しました",
+            icon: .done,
+            style: .iOS17AppleMusic,
+            haptic: .success
+        )
+    }
+    
+    func addSong(setList: SetList, songID: String, completion: @escaping (Bool) -> Void) {
+        if let IDsData = setList.songsid,
+           var songIDs = IDsData as? [String] {
+            if !songIDs.contains(songID) {
+                songIDs.append(songID)
+                setList.songsid = songIDs as NSObject
+                
+                save()
+                completion(true)
+            } else {
+                completion(false)
+            }
+
+        }
+    }
+    
+    func deleteSong(setList: SetList, songID: String) {
+        if let IDsData = setList.songsid,
+           var songIDs = IDsData as? [String] {
+            if songIDs.count <= 2 {
+                //セトリを2曲未満にはしない
+                AlertKitAPI.present(
+                    title: "セットリストは2曲以上必要です！",
+                    icon: .error,
+                    style: .iOS16AppleMusic,
+                    haptic: .error
+                )
+            } else {
+                if let index = songIDs.firstIndex(of: songID) {
+                    songIDs.remove(at: index)
+                    save()
+                    AlertKitAPI.present(
+                        title: "削除しました",
+                        icon: .done,
+                        style: .iOS17AppleMusic,
+                        haptic: .success
+                    )
+                }
+            }
+        }
+    }
+    
+    func deleteSetList(_ setList: SetList) {
+        saveContext.delete(setList)
         save()
     }
 }

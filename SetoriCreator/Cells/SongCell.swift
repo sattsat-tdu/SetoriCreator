@@ -14,6 +14,7 @@ struct SongCell: View {
     let song: Song
     let mode: Mode
     @EnvironmentObject var setListVM: SetListViewModel
+    @State private var addSongFlg = false
     
     var body: some View {
         HStack(spacing: 15) {
@@ -36,10 +37,13 @@ struct SongCell: View {
                 EmptyView()
             case .normal:
                 Button(action: {
-                    print("プレイリストに追加するViewのモーダル表示")
+                    addSongFlg.toggle()
                 }, label: {
                     Image(systemName: "text.badge.plus")
                 })
+                .sheet(isPresented: $addSongFlg) {
+                    AddToSetListView(flg: $addSongFlg, song: song)
+                }
             case .plus:
                 Button(action: {
                     print("全体共有のオブジェクトに追加する処理")
@@ -53,13 +57,16 @@ struct SongCell: View {
         .foregroundStyle(.primary)
         .frame(height: 30)
         .padding()
-        .contextMenu(menuItems: SongMenu)
+//        .contextMenu(menuItems: SongMenu)
     }
     
     @ViewBuilder
     private func SongMenu() -> some View {
-        Button(action: {}) {
+        Button(action: {addSongFlg.toggle()}) {
             Label("セットリストに追加", systemImage: "text.badge.plus")
+        }
+        .sheet(isPresented: $addSongFlg) {
+            AddToSetListView(flg: $addSongFlg, song: song)
         }
     }
 }

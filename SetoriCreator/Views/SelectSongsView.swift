@@ -58,84 +58,76 @@ struct SelectSongsView: View {
                 .background(Color.primary.opacity(0.05))
                 .cornerRadius(8)
                 
-                if let searchResponse = viewModel.searchResponse {
-                    //検索バーにフォーカスされ、かつ検索補完がロードできた場合
-                    if focus {
-                        ForEach(searchResponse.suggestions, id: \.self) { suggestion in
-                            HStack {
-                                Image(systemName: "magnifyingglass")
-                                Text(suggestion.displayTerm)
-                                    .font(.body)
-                                    .frame(maxWidth: .infinity,alignment: .leading)
+                List {
+                    if let searchResponse = viewModel.searchResponse {
+                        //フォーカスされていれば検索補完
+                        if focus {
+                            ForEach(searchResponse.suggestions, id: \.self) { suggestion in
+                                HStack {
+                                    Image(systemName: "magnifyingglass")
+                                    Text(suggestion.displayTerm)
+                                        .font(.body)
+                                        .frame(maxWidth: .infinity,alignment: .leading)
+                                }
+                                .onTapGesture {
+                                    viewModel.searchTerm = suggestion.displayTerm
+                                }
                             }
-                            .onTapGesture {
-                                viewModel.searchTerm = suggestion.displayTerm
-                            }
-                            Divider()
+                            .listRowInsets(EdgeInsets())  //List内の余白を削除
+                            .listRowBackground(Color.clear)
+                            .padding(.horizontal)
+                            .animation(.default, value: viewModel.searchResponse)
                         }
-                        .padding(.horizontal)
-                        .animation(.default, value: viewModel.searchResponse)
-                    }
-                    
-                    List {
                         Section(header: Text("検索結果").fontWeight(.semibold)) {
                             
                             ForEach(searchResponse.topResults, id: \.self) { topResult in
                                 switch topResult {
                                 case .artist(let artist):
-                                    ArtistCell(
-                                        artist: artist,
-                                        mode: mode)
-                                    .environmentObject(setListVM)
+                                    ArtistCell(artist: artist, mode: self.mode)
+                                        .environmentObject(setListVM)
                                 case .song(let song):
-                                    SongCell(song: song,mode: mode)
+                                    SongCell(song: song, mode: self.mode)
                                         .environmentObject(setListVM)
                                 default:
                                     EmptyView()
                                 }
                             }
                             .listRowInsets(EdgeInsets())  //List内の余白を削除
-                            .listRowBackground(Color.clear)
-                            
                         }
                         
-                        Section(header: Text("おすすめアーティスト").fontWeight(.semibold)) {
-                            if let topArtists = chartVM.topArtists {
-                                ForEach(topArtists, id: \.self) { artist in
-                                    ArtistCell(
-                                        artist: artist,
-                                        mode: mode)
+                    }
+                    Section(header: Text("おすすめソング").fontWeight(.semibold)) {
+                        if let topSongs = chartVM.topSongs {
+                            ForEach(topSongs.items, id: \.self) { song in
+                                SongCell(song: song, mode: self.mode)
                                     .environmentObject(setListVM)
-                                        .listRowInsets(EdgeInsets())
-                                }
+                                    .listRowInsets(EdgeInsets())
                             }
-
                         }
                     }
-                    .scrollContentBackground(.hidden)
-                    .padding(-15)
-                    
+                    Section(header: Text("おすすめアーティスト").fontWeight(.semibold)) {
+                        if let topArtists = chartVM.topArtists {
+                            ForEach(topArtists, id: \.self) { artist in
+                                ArtistCell(artist: artist, mode: self.mode)
+                                    .environmentObject(setListVM)
+                                    .listRowInsets(EdgeInsets())
+                            }
+                        }
+                    }
                 }
-                Spacer()
+                .scrollContentBackground(.hidden)
+                .padding(.horizontal, -15)
                 
                 if !focus {
                     HStack(spacing: 20) {
-                        
                         Button(action: {
                             self.songs = setListVM.songs
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
-                            Text("閉じる")
-                                .font(.headline)
-                                .foregroundStyle(.primary)
-                                .padding()
-                                .frame(maxWidth: .infinity,alignment: .center)
-                                .background()
-                                .clipShape(.rect(cornerRadius: 8))
-                                .overlay{
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(.gray.opacity(0.2), lineWidth: 2)
-                                }
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                            
                         })
                         Button(action: {
                             songsListflg.toggle()
@@ -148,7 +140,7 @@ struct SelectSongsView: View {
                                     .minimumScaleFactor(0.1)
                                     .padding()
                                     .frame(maxWidth: .infinity,alignment: .center)
-                                    .background(.orange)
+                                    .background(themeColor)
                                     .clipShape(.rect(cornerRadius: 8))
                                 
                                 Text("\(setListVM.songs.count)")
@@ -158,7 +150,7 @@ struct SelectSongsView: View {
                                     .clipShape(Circle())
                                     .padding(.top, -15)
                             }
-
+                            
                         })
                         .sheet (isPresented: $songsListflg){
                             SongsListView(songs: $setListVM.songs)
@@ -166,6 +158,9 @@ struct SelectSongsView: View {
                         }
                     }
                 }
+                
+                
+                
             }
             .padding()
             .background(Color("backGroundColor"))
@@ -174,7 +169,7 @@ struct SelectSongsView: View {
                 setListVM.initSetList(songs: self.songs)
             }
         }
-
+        
     }
 }
 

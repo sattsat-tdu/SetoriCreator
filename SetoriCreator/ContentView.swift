@@ -13,6 +13,8 @@ struct ContentView: View {
     @StateObject private var topChartViewModel = TopChartViewModel()
     //Tab管理変数
     @State private var selectedTab:tabList = .home
+    //初めて起動したらウォークスルーを開く
+    @AppStorage("isFirstLaunch") var isFirstLaunch = true
     
     var body: some View {
         VStack(spacing: 0) {
@@ -32,6 +34,10 @@ struct ContentView: View {
             }
             Divider()
             CustomTabs(selectedTab: $selectedTab)
+        }
+        //ウォークスルーの表示フラグ
+        .fullScreenCover(isPresented: $isFirstLaunch) {
+            WalkThroughView()
         }
     }
 }

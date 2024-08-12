@@ -25,8 +25,22 @@ struct SelectArtistView: View {
     
     var body: some View {
         VStack {
-            Text("アーティストを選択してください。")
-                .foregroundStyle(.secondary)
+            HStack {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                    
+                })
+                Spacer()
+                Text("アーティストを選択してください。")
+                    .foregroundStyle(.secondary)
+                Spacer()
+            }
+            .padding()
+            
             HStack(spacing: 15) {
                 Image(systemName: "magnifyingglass")
                     .font(.system(size: 23, weight: .bold))
@@ -127,7 +141,7 @@ struct SelectArtistView: View {
             .scrollContentBackground(.hidden)
             
             Spacer()
-        }
+        }.navigationBarBackButtonHidden(true)   //戻るボタンを非表示
         .task {
             //トップアーティストを取得
             chartVM.getTopArtist()
