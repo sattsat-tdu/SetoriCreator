@@ -34,6 +34,7 @@ struct SelectSongsView: View {
                     TextField("音楽を検索する...", text: $viewModel.searchTerm)
                         .keyboardType(.default)
                         .focused(self.$focus)
+                        .submitLabel(.search)  // ここで「検索」ボタンを表示するように指定
                         .toolbar { //キーボードに閉じるボタンを付与
                             ToolbarItemGroup(placement: .keyboard) {
                                 Spacer()         // 右寄せにする
@@ -165,7 +166,9 @@ struct SelectSongsView: View {
             .padding()
             .background(Color("backGroundColor"))
             .onAppear {
-                chartVM.getTopArtist()
+                Task {
+                    await chartVM.getTopArtist()
+                }
                 setListVM.initSetList(songs: self.songs)
             }
         }

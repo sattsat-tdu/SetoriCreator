@@ -3,9 +3,15 @@
 //  SetoriCreator
 //  
 //  Created by SATTSAT on 2024/08/06
-//  
 //
 
+
+
+/*------------------------------------
+ 
+ 審査に引っかかった可能性があるコード↓
+ 
+ ------------------------------------*/
 import SwiftUI
 import MusicKit
 import AlertKit

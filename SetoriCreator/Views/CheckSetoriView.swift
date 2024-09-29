@@ -19,6 +19,7 @@ struct CheckSetoriView: View {
     let imageData: Data
     @Binding var flg: Bool
     @Binding var parentflg: Bool
+    @State private var isShowCheckAlert = false //警告表示
     
     @State private var resultSongs: [Song]?
     
@@ -50,12 +51,19 @@ struct CheckSetoriView: View {
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction){
                         Button(action: {
-                            flg.toggle()
+                            isShowCheckAlert.toggle()
                         }, label: {
                             Image(systemName: "xmark.circle.fill")
                                 .resizable()
                                 .frame(width: 40, height: 40)
                         })
+                        .alert("警告", isPresented: $isShowCheckAlert) {
+                            Button("削除", role: .destructive) {
+                                flg.toggle()
+                            }
+                        } message: {
+                            Text("現在のセットリストが破棄されますが、よろしいですか？")
+                        }
                     }
                     //編集ボタン、右上に
                     ToolbarItem(placement: .confirmationAction){

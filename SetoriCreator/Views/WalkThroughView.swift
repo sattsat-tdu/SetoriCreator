@@ -13,7 +13,8 @@ struct WalkThroughView: View {
     let walkthroughImage = ["WalkThrough1",
                             "WalkThrough2",
                             "WalkThrough3",
-                            "WalkThrough4"
+                            "WalkThrough4",
+                            "WalkThrough5"
     ]
     @AppStorage("isFirstLaunch") var isFirstLaunch = true
     @State private var currentPage = 0

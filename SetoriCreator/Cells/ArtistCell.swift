@@ -30,12 +30,15 @@ struct ArtistCell: View {
             case .none:
                 Spacer()
             case .normal:
-                NavigationLink("", destination:ArtistDetailView(artist: artist, mode: mode)
-                )
+                NavigationLink(destination: ArtistDetailView(artist: artist, mode: mode)) {
+                    EmptyView()
+                }
             case .plus:
-                NavigationLink("", destination:ArtistDetailView(artist: artist, mode: mode)
+                NavigationLink(destination: ArtistDetailView(artist: artist, mode: mode)
                     .environmentObject(setListVM)
-                )
+                ) {
+                    EmptyView()
+                }
             }
         }
         .frame(height: 40)

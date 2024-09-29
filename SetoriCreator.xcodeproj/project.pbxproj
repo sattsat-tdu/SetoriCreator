@@ -14,6 +14,10 @@
 		0040CBD52C64C8A900D27612 /* ShowTopSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBD42C64C8A900D27612 /* ShowTopSongsView.swift */; };
 		0040CBD92C65BF0200D27612 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBD82C65BF0200D27612 /* SafariView.swift */; };
 		0040CBDB2C67BDA900D27612 /* WalkThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBDA2C67BDA900D27612 /* WalkThroughView.swift */; };
+		0040CBFE2C6B903600D27612 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBFD2C6B903600D27612 /* AuthorizationView.swift */; };
+		0040CC002C6F81BC00D27612 /* PlayMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBFF2C6F81BC00D27612 /* PlayMusicViewModel.swift */; };
+		0040CC022C6F8F6900D27612 /* CustomPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CC012C6F8F6900D27612 /* CustomPopup.swift */; };
+		0040CC042C6F8FB300D27612 /* CustomPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CC032C6F8FB300D27612 /* CustomPopupView.swift */; };
 		006EA31F2C588E310030CFDF /* MySetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA31E2C588E310030CFDF /* MySetListView.swift */; };
 		006EA3242C588ED70030CFDF /* CreateSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3232C588ED70030CFDF /* CreateSetListView.swift */; };
 		006EA3262C588FB00030CFDF /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3252C588FB00030CFDF /* TimeLineView.swift */; };
@@ -55,6 +59,10 @@
 		0040CBD42C64C8A900D27612 /* ShowTopSongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTopSongsView.swift; sourceTree = "<group>"; };
 		0040CBD82C65BF0200D27612 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		0040CBDA2C67BDA900D27612 /* WalkThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughView.swift; sourceTree = "<group>"; };
+		0040CBFD2C6B903600D27612 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		0040CBFF2C6F81BC00D27612 /* PlayMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMusicViewModel.swift; sourceTree = "<group>"; };
+		0040CC012C6F8F6900D27612 /* CustomPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopup.swift; sourceTree = "<group>"; };
+		0040CC032C6F8FB300D27612 /* CustomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupView.swift; sourceTree = "<group>"; };
 		006EA31E2C588E310030CFDF /* MySetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySetListView.swift; sourceTree = "<group>"; };
 		006EA3232C588ED70030CFDF /* CreateSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetListView.swift; sourceTree = "<group>"; };
 		006EA3252C588FB00030CFDF /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
@@ -107,9 +115,9 @@
 			children = (
 				0081F7232C588BD1007B49F0 /* HomeView.swift */,
 				006EA31E2C588E310030CFDF /* MySetListView.swift */,
-				006EA3232C588ED70030CFDF /* CreateSetListView.swift */,
 				006EA3252C588FB00030CFDF /* TimeLineView.swift */,
 				006EA3272C588FBC0030CFDF /* MyPageView.swift */,
+				006EA3232C588ED70030CFDF /* CreateSetListView.swift */,
 				00B912002C5E63A800E0D2F1 /* SearchView.swift */,
 				006EA3292C588FFA0030CFDF /* CustomTabs.swift */,
 			);
@@ -132,6 +140,7 @@
 				00B911FE2C5C65D000E0D2F1 /* TopChartViewModel.swift */,
 				00B912022C5E777000E0D2F1 /* SetListViewModel.swift */,
 				00FECC8A2C61A35B00A427D3 /* GetItemViewModel.swift */,
+				0040CBFF2C6F81BC00D27612 /* PlayMusicViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -142,6 +151,8 @@
 				006EA3352C58B2F40030CFDF /* ResignKeyboardOnDragGesture.swift */,
 				006EA3372C58CBE50030CFDF /* RankBackground.swift */,
 				006EA3392C58CE600030CFDF /* CustomColor.swift */,
+				0040CC012C6F8F6900D27612 /* CustomPopup.swift */,
+				0040CC032C6F8FB300D27612 /* CustomPopupView.swift */,
 				00B912062C5EEFEC00E0D2F1 /* Structs.swift */,
 			);
 			path = Helpers;
@@ -215,6 +226,7 @@
 				0040CBD22C64BC5E00D27612 /* SettingView.swift */,
 				0040CBD42C64C8A900D27612 /* ShowTopSongsView.swift */,
 				0040CBDA2C67BDA900D27612 /* WalkThroughView.swift */,
+				0040CBFD2C6B903600D27612 /* AuthorizationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,6 +310,7 @@
 			files = (
 				006EA32A2C588FFA0030CFDF /* CustomTabs.swift in Sources */,
 				006EA3282C588FBC0030CFDF /* MyPageView.swift in Sources */,
+				0040CC042C6F8FB300D27612 /* CustomPopupView.swift in Sources */,
 				00FECC8B2C61A35B00A427D3 /* GetItemViewModel.swift in Sources */,
 				006EA3302C58ABDA0030CFDF /* CoreDataController.swift in Sources */,
 				00B912032C5E777000E0D2F1 /* SetListViewModel.swift in Sources */,
@@ -308,6 +321,7 @@
 				0073206A2C59C38C00553A8F /* ArtistCell.swift in Sources */,
 				006EA3382C58CBE50030CFDF /* RankBackground.swift in Sources */,
 				00FECC872C6117DE00A427D3 /* SetListCell.swift in Sources */,
+				0040CC002C6F81BC00D27612 /* PlayMusicViewModel.swift in Sources */,
 				006EA32E2C58A9C70030CFDF /* CoreData.xcdatamodeld in Sources */,
 				00FECC892C619BA700A427D3 /* SetListDetailView.swift in Sources */,
 				006EA3242C588ED70030CFDF /* CreateSetListView.swift in Sources */,
@@ -323,12 +337,14 @@
 				007320642C59BBDF00553A8F /* SelectArtistView.swift in Sources */,
 				00B912072C5EEFEC00E0D2F1 /* Structs.swift in Sources */,
 				0081F7172C5889B3007B49F0 /* ContentView.swift in Sources */,
+				0040CBFE2C6B903600D27612 /* AuthorizationView.swift in Sources */,
 				0081F7152C5889B3007B49F0 /* SetoriCreatorApp.swift in Sources */,
 				0040CBD12C64876E00D27612 /* EditSetListView.swift in Sources */,
 				006EA3362C58B2F40030CFDF /* ResignKeyboardOnDragGesture.swift in Sources */,
 				00B911FF2C5C65D000E0D2F1 /* TopChartViewModel.swift in Sources */,
 				00B912052C5EEF9B00E0D2F1 /* ArtistDetailView.swift in Sources */,
 				007320682C59C38100553A8F /* SongCell.swift in Sources */,
+				0040CC022C6F8F6900D27612 /* CustomPopup.swift in Sources */,
 				006EA31F2C588E310030CFDF /* MySetListView.swift in Sources */,
 				00B911FD2C5BA45400E0D2F1 /* SongsListView.swift in Sources */,
 				0040CBD92C65BF0200D27612 /* SafariView.swift in Sources */,
@@ -469,6 +485,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "セトリ作成";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "アーティストや曲の検索に使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -501,6 +518,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "セトリ作成";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "アーティストや曲の検索に使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

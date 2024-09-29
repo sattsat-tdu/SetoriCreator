@@ -8,26 +8,53 @@
 import SwiftUI
 import MusicKit
 
-@main
-struct SetoriCreatorApp: App {
+class AuthorizationManager: ObservableObject {
+    @Published var isMusicAuthorized = false
     
-    //MusicKitを扱うために同意を得るのに必要
-    init() {
+    init () {
+        let status = MusicAuthorization.currentStatus
+        self.isMusicAuthorized = status == .authorized
+    }
+    
+    //許可アラートを発行
+    @MainActor
+    func musicAuthRequest() {
         Task {
-            await MusicAuthorization.request()
+            let status = await MusicAuthorization.request()
+            if status == .authorized {
+                self.isMusicAuthorized = true
+            }
         }
     }
-    //ダークモード判定保存変数
-    @AppStorage(wrappedValue: 0, "appearanceMode") var appearanceMode
-    //CoreData参照のため
+}
+
+@main
+struct SetoriCreatorApp: App {
+
+    // CoreData reference
     @StateObject private var dataController = CoreDataController()
+    // 音楽再生を管理するViewModel
+    @StateObject private var playMudicViewModel = PlayMusicViewModel()
+    // Dark mode appearance storage
+    @AppStorage(wrappedValue: 0, "appearanceMode") var appearanceMode
+    
+    @StateObject private var authorizationManager = AuthorizationManager()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(dataController) // ここで CoreDataController を提供
-                .preferredColorScheme(AppearanceModeSetting(rawValue: appearanceMode)?.colorScheme) //ダークモード管理
+            if authorizationManager.isMusicAuthorized {
+                ContentView()
+                    .environment(\.managedObjectContext, dataController.container.viewContext)
+                    .environmentObject(dataController)
+                    .preferredColorScheme(AppearanceModeSetting(rawValue: appearanceMode)?.colorScheme)
+                    .environmentObject(playMudicViewModel)
+                    .onAppear {
+                        playMudicViewModel.onAppear()
+                    }
+            } else {
+                AuthorizationView()
+                    .environmentObject(authorizationManager)
+            }
         }
     }
 }

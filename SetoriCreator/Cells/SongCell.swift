@@ -15,12 +15,24 @@ struct SongCell: View {
     let mode: Mode
     @EnvironmentObject var setListVM: SetListViewModel
     @State private var addSongFlg = false
+    @State private var showAppleMusicSubscriptionOfferFlg:Bool = false
+    @ObservedObject private var musicPlayer = PlayMusicViewModel.shared
     
     var body: some View {
         HStack(spacing: 15) {
-            ArtworkImage(song.artwork!,width: 50)
-                .clipShape(.rect(cornerRadius: 5))
-                .padding(.vertical)
+            Button(action: {
+                if musicPlayer.isSubscribe || true {
+                    musicPlayer.togglePlaybackStatus(for: song)
+                } else {
+                    self.showAppleMusicSubscriptionOfferFlg.toggle()
+                }
+            }, label: {
+                ArtworkImage(song.artwork!,width: 50)
+                    .clipShape(.rect(cornerRadius: 5))
+                    .padding(.vertical)
+            })
+            .musicSubscriptionOffer(isPresented: $showAppleMusicSubscriptionOfferFlg)
+            
             VStack(alignment: .leading) {
                 Text(song.title)
                     .font(.headline)
@@ -54,10 +66,10 @@ struct SongCell: View {
                 })
             }
         }
+        .buttonStyle(.plain)    //リストとして利用した際にボタンの競合を防ぐ
         .foregroundStyle(.primary)
         .frame(height: 30)
         .padding()
-//        .contextMenu(menuItems: SongMenu)
     }
     
     @ViewBuilder

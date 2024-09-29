@@ -11,7 +11,7 @@ import SwiftUI
 struct SearchView: View {
     
     @StateObject private var viewModel = MusicSearchViewModel()
-    @StateObject private var chartVM = TopChartViewModel()
+    @EnvironmentObject var chartVM: TopChartViewModel
     @FocusState var focus:Bool
     //曲の表示形式を指定
     let mode: Mode = .normal
@@ -28,6 +28,7 @@ struct SearchView: View {
                     TextField("音楽を検索する...", text: $viewModel.searchTerm)
                         .keyboardType(.default)
                         .focused(self.$focus)
+                        .submitLabel(.search)  // ここで「検索」ボタンを表示するように指定
                         .toolbar { //キーボードに閉じるボタンを付与
                             ToolbarItemGroup(placement: .keyboard) {
                                 Spacer()         // 右寄せにする
@@ -114,7 +115,9 @@ struct SearchView: View {
             .padding()
             .background(Color("backGroundColor"))
             .onAppear {
-                chartVM.getTopArtist()
+                Task {
+                    await chartVM.getTopArtist()
+                }
             }
         }
 
