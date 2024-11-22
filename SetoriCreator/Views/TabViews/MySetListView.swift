@@ -15,12 +15,13 @@ struct MySetListView: View {
     @FetchRequest(
         sortDescriptors: [SortDescriptor(\.date, order: .reverse)] // 日付を降順にソート
     ) var setLists: FetchedResults<SetList>
-    // 3行表示に必要
-    private let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: 20), // スペースを設定
-        GridItem(.flexible(), spacing: 20),
-        GridItem(.flexible(), spacing: 20)
-    ]
+    
+    @State private var columnCount = 3
+    
+    private var columns: [GridItem] {
+        Array(repeating: GridItem(.flexible()), count: columnCount)
+    }
+    
     @State private var createFlg = false
     
     var body: some View {
@@ -28,7 +29,7 @@ struct MySetListView: View {
             ScrollView {
                 if !setLists.isEmpty {
                     //Finderのように3行表示
-                    LazyVGrid(columns: columns, spacing: 30) {
+                    LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(setLists, id: \.id) { setList in
                             let getItemVM = GetItemViewModel() // 各セルごとに新しいインスタンスを作成
                             NavigationLink(
