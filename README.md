@@ -20,10 +20,5 @@ test: テスト関連の変更
 ### Branch Name
 
 ```
-ex) feat/***
+ex) feat-***
 ```
-
-### Commit Message
-
-```
-ex) feat: xxxx
