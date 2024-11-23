@@ -12,37 +12,55 @@ import MusicKit
 struct SetListCell: View {
     
     let setList: SetList
+    let cornerRadius: CGFloat = 8
     @EnvironmentObject var getItemVM: GetItemViewModel
     
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                ForEach((0..<3).reversed(), id: \.self) { offset in
-                    RoundedRectangle(cornerRadius: 5)
-                        .frame(width: 100, height: 100)
-                        .foregroundStyle(.primary.opacity(0.7))
-                        .offset(x: CGFloat(offset * 5), y: CGFloat(offset * -5))
-                }
-                
+            albumStack
+                .shadow(color: .black.opacity(0.1), radius: 3)
+            
+            Spacer()
+            Text(setList.name ?? "フォルダ名がnilです")
+                .font(.callout)
+                .fontWeight(.semibold)
+                .lineLimit(1)
+                .minimumScaleFactor(0.1)
+                .frame(maxWidth: .infinity)
+                .foregroundStyle(.primary)
+        }
+    }
+    
+    @ViewBuilder
+    private var albumStack: some View {
+        let offsetValue: CGFloat = 8
+        ZStack {
+            Color.backGround
+                .aspectRatio(1, contentMode: .fill)
+                .offset(x: offsetValue, y: offsetValue)
+            
+            Color.item
+                .aspectRatio(1, contentMode: .fill)
+            
+            Group {
                 if let imageData = setList.image,
                    let uiImage = UIImage(data: imageData) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)  // これで正方形に設定
-                        .clipShape(Rectangle())
-                        .clipShape(.rect(cornerRadius: 5))
+                    Color.clear
+                        .aspectRatio(1, contentMode: .fill)
+                        .overlay(
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                        )
+                        .clipped()
                 } else {
                     if let artist = getItemVM.artist {
-                        ArtworkImage(artist.artwork!,width: 100)
-                            .scaledToFit()
-                            .clipShape(.rect(cornerRadius: 5))
-                            .opacity(1.0)
+                        GeometryReader { geometry in
+                            ArtworkImage(artist.artwork!, width: geometry.size.width)
+                                .scaledToFit()
+                        }
                     } else {
-                        RoundedRectangle(cornerRadius: 5)
-                            .scaledToFit()
-                            .frame(width: 100)
-                            .foregroundStyle(.gray.gradient)
+                        Color.white
                             .task{
                                 if let artistID = setList.artistid {
                                     getItemVM.idToArtist(artistID)
@@ -57,15 +75,10 @@ struct SetListCell: View {
                     }
                 }
             }
-            .shadow(radius: 3)
-            Spacer()
-            Text(setList.name ?? "フォルダ名がnilです")
-                .font(.callout.bold())
-                .lineLimit(1)
-                .minimumScaleFactor(0.1)
-                .frame(maxWidth: .infinity)
-                .foregroundStyle(.primary)
+            .offset(x: -offsetValue, y: -offsetValue)
         }
+        .padding(offsetValue)
+        .clipShape(.rect(cornerRadius: cornerRadius))
     }
 }
 
