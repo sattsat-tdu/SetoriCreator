@@ -18,6 +18,7 @@ struct SetListCell: View {
     var body: some View {
         VStack(spacing: 0) {
             albumStack
+                .shadow(color: .black.opacity(0.1), radius: 3)
             
             Spacer()
             Text(setList.name ?? "フォルダ名がnilです")
@@ -38,7 +39,7 @@ struct SetListCell: View {
                 .aspectRatio(1, contentMode: .fill)
                 .offset(x: offsetValue, y: offsetValue)
             
-            Color.secondary
+            Color.item
                 .aspectRatio(1, contentMode: .fill)
             
             Group {
@@ -74,7 +75,6 @@ struct SetListCell: View {
                     }
                 }
             }
-//            .clipShape(Rectangle())
             .offset(x: -offsetValue, y: -offsetValue)
         }
         .padding(offsetValue)

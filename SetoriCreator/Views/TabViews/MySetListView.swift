@@ -68,7 +68,7 @@ struct MySetListView: View {
                 }
 
             }
-            .background(CustomBackGround2())
+            .background(.mainBackground)
             .navigationTitle("マイセットリスト")
             .navigationBarTitleDisplayMode(.inline)
         }

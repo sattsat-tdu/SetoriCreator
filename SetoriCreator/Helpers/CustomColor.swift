@@ -13,7 +13,7 @@ let rankColors: [Int: Color] = [
     1: .yellow, // 金色
     2: .gray,   // 銀色
     3: .brown,  // 銅色
-    4: Color("backGroundColor") // デフォルトの背景色
+    4: Color(.mainBackground) // デフォルトの背景色
 ]
 
 //テーマカラー
@@ -36,63 +36,26 @@ let testcolor = LinearGradient(
     endPoint: .bottomTrailing
 )
 
-//struct CustomBackGround: View {
-//    var body: some View {
-//        ZStack {
-//            customGradients
-//            
-//            Image(systemName: "music.note")
-//                .resizable()
-//                .scaledToFit()
-//                .frame(width: 80)
-//                .rotationEffect(.degrees(-10))
-//                .foregroundColor(.pink.opacity(0.5))
-//                .blur(radius: 10)
-//                .offset(x: -100, y: -250)
-//
-//            Image(systemName: "music.note")
-//                .resizable()
-//                .scaledToFit()
-//                .frame(width: 230)
-//                .rotationEffect(.degrees(15))
-//                .foregroundColor(.yellow.opacity(0.5))
-//                .blur(radius: 10)
-//                .offset(x: 80, y: -170)
-//            
-//            Image(systemName: "music.quarternote.3")
-//                .resizable()
-//                .scaledToFit()
-//                .frame(width: 300)
-//                .rotationEffect(.degrees(-10))
-//                .foregroundColor(.cyan.opacity(0.3))
-//                .blur(radius: 10)
-//                .offset(x: 0, y: 230)
-//        }
-//        .edgesIgnoringSafeArea(.all)
-//    }
-//}
-//
-//#Preview {
-//    CustomBackGround()
-//}
-
 struct CustomBackGround: View {
     var body: some View {
-        ZStack(alignment: .bottom) {
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    .pink.opacity(0.6),
-                    .mint.opacity(0.6)
-                ]),
-                startPoint: .topLeading,
-                endPoint: .center
-            )
+        ZStack {
+            Rectangle()
+                .fill(
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            .mint.opacity(0.6),
+                            .pink.opacity(0.6)
+                        ]),
+                        startPoint: .topLeading,
+                        endPoint: .trailing
+                    )
+                )
             
             Rectangle()
                 .fill(
                     LinearGradient(colors: [
-                        .backGround.opacity(0),
-                        .backGround.opacity(1),
+                        .mainBackground.opacity(0.5),
+                        .mainBackground.opacity(1),
                     ], startPoint: .top, endPoint: .bottom)
                 )
         }
@@ -102,40 +65,4 @@ struct CustomBackGround: View {
 
 #Preview {
     CustomBackGround()
-}
-
-struct CustomBackGround2: View {
-    var body: some View {
-        VStack(spacing: 0) {
-            ZStack(alignment: .bottom) {
-                
-                Rectangle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                .mint.opacity(0.8),
-                                .pink.opacity(0.8)
-                            ]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                
-                Rectangle()
-                    .fill(
-                        LinearGradient(colors: [
-                            .backGround.opacity(0),
-                            .backGround.opacity(1),
-                        ], startPoint: .top, endPoint: .bottom)
-                    )
-            }
-            Rectangle()
-                .fill(.backGround)
-        }
-        .edgesIgnoringSafeArea(.all)
-    }
-}
-
-#Preview {
-    CustomBackGround2()
 }
