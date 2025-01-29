@@ -83,10 +83,12 @@ struct SetListCell: View {
 }
 
 #Preview {
-    let previewContext = CoreDataController().container.viewContext
-    let testSetList = SetList(context: previewContext)
+    let context = CoreDataController().saveContext
+    let testSetList = SetList(context: context)
     testSetList.name = "テストセットリスト"
     testSetList.image = UIImage(named: "testArtist")?.pngData()
+    testSetList.songsid = ["", ""] as NSObject
     return SetListCell(setList: testSetList)
-        .environment(\.managedObjectContext, previewContext)
+        .frame(width: 100, height: 100)
+        .environment(\.managedObjectContext, context)
 }

@@ -18,6 +18,7 @@
 		0040CC002C6F81BC00D27612 /* PlayMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CBFF2C6F81BC00D27612 /* PlayMusicViewModel.swift */; };
 		0040CC022C6F8F6900D27612 /* CustomPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CC012C6F8F6900D27612 /* CustomPopup.swift */; };
 		0040CC042C6F8FB300D27612 /* CustomPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040CC032C6F8FB300D27612 /* CustomPopupView.swift */; };
+		006929D02D491116008F97FC /* MusicKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006929CF2D491116008F97FC /* MusicKitManager.swift */; };
 		006EA31F2C588E310030CFDF /* MySetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA31E2C588E310030CFDF /* MySetListView.swift */; };
 		006EA3242C588ED70030CFDF /* CreateSetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3232C588ED70030CFDF /* CreateSetListView.swift */; };
 		006EA3262C588FB00030CFDF /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EA3252C588FB00030CFDF /* TimeLineView.swift */; };
@@ -63,6 +64,7 @@
 		0040CBFF2C6F81BC00D27612 /* PlayMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMusicViewModel.swift; sourceTree = "<group>"; };
 		0040CC012C6F8F6900D27612 /* CustomPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopup.swift; sourceTree = "<group>"; };
 		0040CC032C6F8FB300D27612 /* CustomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupView.swift; sourceTree = "<group>"; };
+		006929CF2D491116008F97FC /* MusicKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicKitManager.swift; sourceTree = "<group>"; };
 		006EA31E2C588E310030CFDF /* MySetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySetListView.swift; sourceTree = "<group>"; };
 		006EA3232C588ED70030CFDF /* CreateSetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetListView.swift; sourceTree = "<group>"; };
 		006EA3252C588FB00030CFDF /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		006929CE2D4910EB008F97FC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				006929CF2D491116008F97FC /* MusicKitManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		006EA3202C588E340030CFDF /* TabViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +203,7 @@
 		0081F7132C5889B3007B49F0 /* SetoriCreator */ = {
 			isa = PBXGroup;
 			children = (
+				006929CE2D4910EB008F97FC /* Managers */,
 				0081F7142C5889B3007B49F0 /* SetoriCreatorApp.swift */,
 				0081F7162C5889B3007B49F0 /* ContentView.swift */,
 				0081F7222C588BC5007B49F0 /* Views */,
@@ -262,7 +273,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					0081F7102C5889B3007B49F0 = {
 						CreatedOnToolsVersion = 15.3;
@@ -345,6 +356,7 @@
 				00B912052C5EEF9B00E0D2F1 /* ArtistDetailView.swift in Sources */,
 				007320682C59C38100553A8F /* SongCell.swift in Sources */,
 				0040CC022C6F8F6900D27612 /* CustomPopup.swift in Sources */,
+				006929D02D491116008F97FC /* MusicKitManager.swift in Sources */,
 				006EA31F2C588E310030CFDF /* MySetListView.swift in Sources */,
 				00B911FD2C5BA45400E0D2F1 /* SongsListView.swift in Sources */,
 				0040CBD92C65BF0200D27612 /* SafariView.swift in Sources */,
@@ -359,6 +371,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -422,6 +435,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

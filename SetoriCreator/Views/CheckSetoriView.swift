@@ -21,7 +21,7 @@ struct CheckSetoriView: View {
     @Binding var parentflg: Bool
     @State private var isShowCheckAlert = false //警告表示
     
-    @State private var resultSongs: [Song]?
+    @State private(set) var resultSongs: [Song]?
     
     var body: some View {
         NavigationStack {
@@ -73,9 +73,7 @@ struct CheckSetoriView: View {
                     ToolbarItemGroup(placement: .bottomBar) {
                         Button(action: {
                             resultSongs = nil
-                            Task {
-                                await createSetori(artist: artist, totalSongs: totalSongs)
-                            }
+                            createArtistSetori()
                         }, label: {
                             Text("再生成")
                                 .font(.headline)
@@ -110,9 +108,7 @@ struct CheckSetoriView: View {
                         .foregroundStyle(.secondary)
                 }
                 .edgesIgnoringSafeArea(.all)
-                .task {
-                    await createSetori(artist: artist, totalSongs: totalSongs)
-                }
+                .onAppear(perform: createArtistSetori)
             }
         }
         
@@ -128,33 +124,20 @@ struct CheckSetoriView: View {
         resultSongs!.remove(atOffsets: offsets)
     }
     
-    @MainActor  //totalSongs分セトリを作成
-    private func createSetori(artist: Artist, totalSongs: Int) async {
-        do {
-            //アルバム情報を取得
-            let updatedArtist = try await artist.with([.albums])
-            if let albums = updatedArtist.albums {
-                var allSongsDict: [String: Song] = [:]
-                for album in albums {
-                    //アルバムからトラック情報を取得
-                    let updatedAlnum = try await album.with([.tracks])
-                    if let tracks = updatedAlnum.tracks {
-                        for track in tracks {
-                            if case .song(let song) = track {
-                                allSongsDict[song.title] = song
-                            }
-                        }
-                    }
-                }
-                let randomSongs = allSongsDict.values.shuffled().prefix(totalSongs)
-                self.resultSongs = Array(randomSongs)
+    //セットリスト生成関数
+    private func createArtistSetori() {
+        Task {
+            let result = await MusicKitManager.shared.createSetori(
+                artist: artist,
+                count: totalSongs
+            )
+            switch result {
+            case .success(let songs):
+                resultSongs = songs
+            case .failure(let error):
+                print("[ERROR] \(error.rawValue)")
             }
-        } catch {
-            print("Failed to load top songs: \(error)")
         }
     }
+    
 }
-
-//#Preview {
-//    CreateSetoriView(flg: .constant(true), parentflg: .constant(true))
-//}

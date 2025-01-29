@@ -17,9 +17,15 @@ struct ArtistCell: View {
     
     var body: some View {
         HStack(spacing: 15) {
-            ArtworkImage(artist.artwork!,
-                         width: 60)
-            .clipShape(.rect(cornerRadius: 50))
+            if let artwork = artist.artwork {
+                ArtworkImage(artwork, width: 60)
+                    .clipShape(.rect(cornerRadius: 50))
+            } else {
+                Circle()
+                    .fill(.secondary)
+                    .frame(width: 60)
+            }
+            
             Text(artist.name)
                 .font(.headline)
                 .lineLimit(1)

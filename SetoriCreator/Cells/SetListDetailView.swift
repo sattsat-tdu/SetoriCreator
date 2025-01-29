@@ -5,13 +5,6 @@
 //  Created by SATTSAT on 2024/08/06
 //
 
-
-
-/*------------------------------------
- 
- 審査に引っかかった可能性があるコード↓
- 
- ------------------------------------*/
 import SwiftUI
 import MusicKit
 import AlertKit
@@ -79,9 +72,7 @@ struct SetListDetailView: View {
         .environment(\.editMode, self.$editMode)
         .background(Color("backGroundColor"))
         .edgesIgnoringSafeArea(.top)
-        .task {
-            await loadData()
-        }
+        .onAppear(perform: loadSongs)
         .sheet(isPresented: $editFlg) {
             EditSetListView(flg: $editFlg,
                             setList: setList)
@@ -147,26 +138,6 @@ struct SetListDetailView: View {
         }
     }
     
-    @MainActor  //ソングをIDsから取得
-    private func songIDsToSongs(_ songIDs: [String]) async {
-        do {
-            var songs: [Song] = []
-            for songID in songIDs {
-                let request = MusicCatalogResourceRequest<Song>(
-                    matching: \.id,
-                    equalTo: MusicItemID(rawValue: songID))
-                let response = try await request.response()
-                if let fetchedSong = response.items.first {
-                    songs.append(fetchedSong)
-                }
-            }
-            self.songs = songs
-            self.compareSong = songs
-        } catch {
-            print("Failed to load top songs: \(error)")
-        }
-    }
-    
     @ViewBuilder
     func ArtWork() -> some View {
         let height = size.height * 0.45
@@ -224,25 +195,52 @@ struct SetListDetailView: View {
                 style: .iOS16AppleMusic,
                 haptic: .error
             )
-        }else {
+        } else {
             self.songs.remove(atOffsets: offsets)
         }
     }
-    //songsIDからロード
-    private func loadData() async {
-        if let IDsData = setList.songsid,
-           let songIDs = IDsData as? [String] {
-            await songIDsToSongs(songIDs)
+    
+    //IDから詳細情報を取得
+    private func loadSongs() {
+        guard let IDsData = setList.songsid,
+              let songIDs = IDsData as? [String] else {
+            print("[ERROR] セトリの取得に失敗しました")
+            return
+        }
+        let manager = MusicKitManager.shared
+        Task {
+            let indexedSongs = await withTaskGroup(of: (Int, Song?).self) { group in
+                for (index, songID) in songIDs.enumerated() {
+                    group.addTask {
+                        //429エラー（大量リクエスト）防止のため、遅延処理
+                        try? await Task.sleep(nanoseconds: 200_000_000)
+                        let song = await manager.fetchSong(songId: songID)
+                        return (index, song) // 順番を担保
+                    }
+                }
+                
+                var songDict: [Int: Song] = [:]
+                for await (index, song) in group {
+                    if let song = song {
+                        songDict[index] = song
+                    }
+                }
+                // index順に戻す
+                return songIDs.indices.compactMap { songDict[$0] }
+            }
+
+            self.songs = indexedSongs
+            self.compareSong = indexedSongs
         }
     }
 }
 
 #Preview {
-    let previewContext = CoreDataController().container.viewContext
-    let testSetList = SetList(context: previewContext)
+    let context = CoreDataController().saveContext
+    let testSetList = SetList(context: context)
     testSetList.name = "テストセットリスト"
     testSetList.image = UIImage(named: "testArtist")?.pngData()
     testSetList.songsid = ["", ""] as NSObject
     return SetListDetailView(setList: testSetList)
-        .environment(\.managedObjectContext, previewContext)
+        .environment(\.managedObjectContext, context)
 }
