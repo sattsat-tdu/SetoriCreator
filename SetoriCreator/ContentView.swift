@@ -18,19 +18,21 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            switch selectedTab {
-            case .home:
-                HomeView()
-                    .environmentObject(topChartViewModel)
-            case .mySetList:
-                MySetListView()
-                    .environmentObject(dataController)
-            case .timeLine:
-                TimeLineView()
-            case .search:
-                SearchView()
-                    .resignKeyboardOnDragGesture()
-                    .environmentObject(topChartViewModel)
+            NavigationStack {
+                switch selectedTab {
+                case .home:
+                    HomeView()
+                        .environmentObject(topChartViewModel)
+                case .mySetList:
+                    MySetListView()
+                        .environmentObject(dataController)
+                case .timeLine:
+                    TimeLineView()
+                case .search:
+                    SearchView()
+                        .resignKeyboardOnDragGesture()
+                        .environmentObject(topChartViewModel)
+                }
             }
             Divider()
             CustomTabs(selectedTab: $selectedTab)

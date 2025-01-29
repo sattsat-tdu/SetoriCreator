@@ -17,51 +17,42 @@ struct HomeView: View {
     @State private var checkSetListFlg = false
     
     var body: some View {
-        NavigationStack {
-            ScrollView(.vertical, showsIndicators: false){
-                VStack(spacing: 16) {
-                    
-                    topSongBox
-                    
-                    quickCreateBox
-                        .onChange(of: artist) {
-                            if artist != nil {
-                                checkSetListFlg.toggle()
-                            }
-                        }
-                    myAdBox
-                }
-                .padding()
-                .fullScreenCover(isPresented: $checkSetListFlg) {
-                    CheckSetoriView(artist: artist!,
-                                    totalSongs: 20,
-                                    name: "\(artist!.name)のセトリ",
-                                    imageData: Data(),
-                                    flg: $checkSetListFlg,
-                                    parentflg: .constant(true))
-                }
-            }
-            .background(.mainBackground)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
-            .navigationBarBackButtonHidden(true)    //左上邪魔だから消す
-            .toolbar {
-                //                ToolbarItemGroup(placement: .automatic) {
-                //                    Spacer()
-                //                    Text("center")
-                //                    Spacer()
-                //                    Image(systemName: "plus")
-                //                }
-                ToolbarItem(placement: .principal) {
-                    Text("セットリスト\nクリエイター")
-                        .font(.headline)
-                        .minimumScaleFactor(0.1)
-                }
+        ScrollView(.vertical, showsIndicators: false){
+            VStack(spacing: 16) {
                 
-                ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink(destination: SettingView()) {
-                        Image(systemName: "gearshape")
+                topSongBox
+                
+                quickCreateBox
+                    .onChange(of: artist) {
+                        if artist != nil {
+                            checkSetListFlg.toggle()
+                        }
                     }
+                myAdBox
+            }
+            .padding()
+            .fullScreenCover(isPresented: $checkSetListFlg) {
+                CheckSetoriView(artist: artist!,
+                                totalSongs: 20,
+                                name: "\(artist!.name)のセトリ",
+                                imageData: Data(),
+                                flg: $checkSetListFlg,
+                                parentflg: .constant(true))
+            }
+        }
+        .background(.mainBackground)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("セットリスト\nクリエイター")
+                    .font(.headline)
+                    .minimumScaleFactor(0.1)
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink(destination: SettingView()) {
+                    Image(systemName: "gearshape")
                 }
             }
         }
