@@ -35,6 +35,7 @@ struct ContentView: View {
             Divider()
             CustomTabs(selectedTab: $selectedTab)
         }
+        .ignoresSafeArea(.keyboard, edges: .all)
         //ウォークスルーの表示フラグ
         .fullScreenCover(isPresented: $isFirstLaunch) {
             WalkThroughView()
