@@ -12,11 +12,13 @@ import AlertKit
 
 class CoreDataController: ObservableObject {
     
+    static let shared = CoreDataController()
+    
     let container = NSPersistentContainer(name: "CoreData")
     var saveContext: NSManagedObjectContext
     
     //CoreDataの定義
-    init(){
+    private init() {
         container.loadPersistentStores { desc, error in
             if let error = error {
                 print("Failed to load the data \(error.localizedDescription)")

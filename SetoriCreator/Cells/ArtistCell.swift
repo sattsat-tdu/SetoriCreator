@@ -13,7 +13,7 @@ struct ArtistCell: View {
     
     let artist: Artist
     let mode: Mode
-    @EnvironmentObject var setListVM: SetListViewModel
+    @EnvironmentObject var setListVM: SelectSongViewModel
     
     var body: some View {
         HStack(spacing: 15) {

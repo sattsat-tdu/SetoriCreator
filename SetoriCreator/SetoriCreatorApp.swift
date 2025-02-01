@@ -32,7 +32,7 @@ class AuthorizationManager: ObservableObject {
 struct SetoriCreatorApp: App {
 
     // CoreData reference
-    @StateObject private var dataController = CoreDataController()
+    @StateObject private var dataController = CoreDataController.shared
     // 音楽再生を管理するViewModel
     @StateObject private var playMudicViewModel = PlayMusicViewModel()
     // Dark mode appearance storage

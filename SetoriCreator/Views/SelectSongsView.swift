@@ -18,7 +18,7 @@ struct SelectSongsView: View {
     
     @Binding var songs: [Song]
     //セットリストの管理に使用
-    @StateObject private var setListVM = SetListViewModel()
+    @StateObject private var setListVM = SelectSongViewModel()
     @Environment(\.presentationMode) private var presentationMode //View閉じるため
     //フラグ変数
     @State private var songsListflg = false

@@ -20,6 +20,7 @@ final class MusicKitManager {
     
     private init() {}
     
+    //アーティストのセットリストを生成
     func createSetori(artist: Artist, count: Int = 20) async -> Result<[Song], MusicKitError> {
         var songs = [Song]()
         
@@ -83,6 +84,18 @@ final class MusicKitManager {
             return response.items.first
         } catch {
             print("[ERROR] 曲の取得に失敗しました。id: \(songId)")
+            return nil
+        }
+    }
+    
+    //idからArtistを取得
+    func fetchArtist(artistId: String) async -> Artist? {
+        do {
+            let request = MusicCatalogResourceRequest<Artist>( matching: \.id, equalTo: MusicItemID(rawValue: artistId))
+            let response = try await request.response()
+            return response.items.first
+        } catch {
+            print("[ERROR] Artistの取得に失敗しました。id: \(artistId)")
             return nil
         }
     }

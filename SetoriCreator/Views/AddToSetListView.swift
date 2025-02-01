@@ -35,9 +35,9 @@ struct AddToSetListView: View {
                 //Finderのように3行表示
                 LazyVGrid(columns: columns, spacing: 30) {
                     ForEach(setLists, id: \.id) { setList in
-                        let getItemVM = GetItemViewModel() // 各セルごとに新しいインスタンスを作成
+                        let viewModel = SetListViewModel(setList)
                         SetListCell(setList: setList)
-                            .environmentObject(getItemVM)
+                            .environmentObject(viewModel)
                             .onTapGesture {
                                 cdc.addSong(setList: setList, songID: song.id.rawValue, completion: { success in
                                     if success {

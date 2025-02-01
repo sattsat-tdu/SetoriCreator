@@ -13,10 +13,10 @@ struct SongCell: View {
     
     let song: Song
     let mode: Mode
-    @EnvironmentObject var setListVM: SetListViewModel
+    @EnvironmentObject var setListVM: SelectSongViewModel
     @State private var addSongFlg = false
     @State private var showAppleMusicSubscriptionOfferFlg:Bool = false
-    @ObservedObject private var musicPlayer = PlayMusicViewModel.shared
+    private let musicPlayer = PlayMusicViewModel.shared
     
     var body: some View {
         HStack(spacing: 15) {
@@ -35,11 +35,12 @@ struct SongCell: View {
             
             VStack(alignment: .leading) {
                 Text(song.title)
-                    .font(.headline)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
                     .foregroundStyle(.primary)
                 Spacer()
                 Text(song.artistName)
-                    .font(.body)
+                    .font(.footnote)
                     .foregroundStyle(.secondary)
             }
             Spacer()

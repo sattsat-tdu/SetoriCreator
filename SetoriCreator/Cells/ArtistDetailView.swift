@@ -15,7 +15,7 @@ struct ArtistDetailView: View {
     let mode: Mode
     let size: CGSize = UIScreen.main.bounds.size
     @State private var topSongs: MusicItemCollection<Song>?
-    @EnvironmentObject var setListVM: SetListViewModel
+    @EnvironmentObject var setListVM: SelectSongViewModel
     var body: some View {
         
         ScrollView(showsIndicators: false) {
@@ -80,26 +80,28 @@ struct ArtistDetailView: View {
             let minY = proxy.frame(in: .named("SCROLL")).minY
             let progress = minY / (height * (minY > 0 ? 0.4 : 0.5))
             
-            ArtworkImage(artist.artwork!,width: size.width)
-                .clipped()
-                .overlay {
-                    ZStack(alignment: .bottom) {
-                        Rectangle()
-                            .fill(
-                                .linearGradient(colors: [
-                                    .backGround.opacity(0 - progress),
-                                    .backGround.opacity(1),
-                                ], startPoint: .center, endPoint: .bottom)
-                            )
-                        Text(artist.name)
-                            .font(.largeTitle.bold())
-                            .opacity(1 + (progress > 0 ? -progress : progress))
-                            .padding(.bottom)
-                            .offset(y: minY < 0 ? minY : 0)
-                        
+            if let artwork = artist.artwork {
+                ArtworkImage(artwork,width: size.width)
+                    .clipped()
+                    .overlay {
+                        ZStack(alignment: .bottom) {
+                            Rectangle()
+                                .fill(
+                                    .linearGradient(colors: [
+                                        .backGround.opacity(0 - progress),
+                                        .backGround.opacity(1),
+                                    ], startPoint: .center, endPoint: .bottom)
+                                )
+                            Text(artist.name)
+                                .font(.largeTitle.bold())
+                                .opacity(1 + (progress > 0 ? -progress : progress))
+                                .padding(.bottom)
+                                .offset(y: minY < 0 ? minY : 0)
+                            
+                        }
                     }
-                }
-                .offset(y:-minY)
+                    .offset(y:-minY)
+            }
         }
         .frame(height: height)
     }

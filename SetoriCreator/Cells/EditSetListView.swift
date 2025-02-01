@@ -138,7 +138,7 @@ struct EditSetListView: View {
 }
 
 #Preview {
-    let context = CoreDataController().saveContext
+    let context = CoreDataController.shared.saveContext
     let testSetList = SetList(context: context)
     testSetList.name = "テストセットリスト"
     testSetList.image = UIImage(named: "testArtist")?.pngData()
