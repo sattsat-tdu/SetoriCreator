@@ -38,12 +38,20 @@ struct CustomTabs: View {
             Button(action: {
                 isShowAddSetList.toggle()
             }, label: {
-                Image(systemName: "plus.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 40,height: 40)
-                    .foregroundStyle(themeColor)
+                VStack(spacing: 0) {
+                    Image(systemName: "plus")
+                        .font(.system(size: 24))
+                    
+                    Text("作成")
+                        .font(.caption)
+                }
+                .bold()
+                .padding()
+                .foregroundStyle(.black)
+                .background(themeColor)
+                .clipShape(Circle())
             })
+            .offset(y: -8)
             .fullScreenCover(isPresented: $isShowAddSetList) {
                 CreateSetListView(isShowing: $isShowAddSetList)
             }
