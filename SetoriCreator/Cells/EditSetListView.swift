@@ -15,11 +15,11 @@ struct EditSetListView: View {
     @EnvironmentObject var cdc: CoreDataController
     
     @Binding var flg: Bool
-//    @Binding var songs: [Song]
     let setList: SetList
     @State private var name = ""
     @State var selectedPhoto: PhotosPickerItem?
     @State var selectedImageData: Data?
+    @State private var isShowCheckAlert = false
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -102,6 +102,18 @@ struct EditSetListView: View {
                         .clipShape(Capsule())
                 })
                 
+                Button(action: {
+                    isShowCheckAlert.toggle()
+                }, label: {
+                    Text("削除")
+                        .font(.headline)
+                        .foregroundStyle(.black)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(.red)
+                        .clipShape(Capsule())
+                })
+                
             }
             .padding()
             .onAppear {
@@ -109,7 +121,16 @@ struct EditSetListView: View {
                 selectedImageData = setList.image
             }
         }
-        .background(Color("backGroundColor"))
+        .background(.mainBackground)
+        .alert("警告", isPresented: $isShowCheckAlert) {
+            Button("削除", role: .destructive) {
+                //削除
+                cdc.deleteSetList(setList)
+                flg.toggle()
+            }
+        } message: {
+            Text("\(setList.name ?? "")を削除します。\nよろしいですか？")
+        }
     }
     
     @ViewBuilder

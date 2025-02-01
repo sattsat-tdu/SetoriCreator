@@ -52,7 +52,7 @@ extension SetListDetailView {
                 Text("\(viewModel.songs.count) 曲収録")
                     .foregroundStyle(.secondary)
                 
-                Text(viewModel.setList.name!)
+                Text(viewModel.setList.name ?? "削除されたセトリ")
                     .font(.title2.bold())
                 
                 buttonBox
