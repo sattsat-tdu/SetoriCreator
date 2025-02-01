@@ -17,42 +17,44 @@ struct HomeView: View {
     @State private var checkSetListFlg = false
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false){
-            VStack(spacing: 16) {
-                
-                topSongBox
-                
-                quickCreateBox
-                    .onChange(of: artist) {
-                        if artist != nil {
-                            checkSetListFlg.toggle()
+        NavigationStack {
+            ScrollView(.vertical, showsIndicators: false){
+                VStack(spacing: 16) {
+                    
+                    topSongBox
+                    
+                    quickCreateBox
+                        .onChange(of: artist) {
+                            if artist != nil {
+                                checkSetListFlg.toggle()
+                            }
                         }
+                    myAdBox
+                }
+                .padding()
+                .fullScreenCover(isPresented: $checkSetListFlg) {
+                    CheckSetoriView(artist: artist!,
+                                    totalSongs: 20,
+                                    name: "\(artist!.name)のセトリ",
+                                    imageData: Data(),
+                                    flg: $checkSetListFlg,
+                                    parentflg: .constant(true))
+                }
+            }
+            .background(GradientBackground())
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("セットリスト\nクリエイター")
+                        .font(.headline)
+                        .minimumScaleFactor(0.1)
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: SettingView()) {
+                        Image(systemName: "gearshape")
                     }
-                myAdBox
-            }
-            .padding()
-            .fullScreenCover(isPresented: $checkSetListFlg) {
-                CheckSetoriView(artist: artist!,
-                                totalSongs: 20,
-                                name: "\(artist!.name)のセトリ",
-                                imageData: Data(),
-                                flg: $checkSetListFlg,
-                                parentflg: .constant(true))
-            }
-        }
-        .background(.mainBackground)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("セットリスト\nクリエイター")
-                    .font(.headline)
-                    .minimumScaleFactor(0.1)
-            }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink(destination: SettingView()) {
-                    Image(systemName: "gearshape")
                 }
             }
         }
@@ -68,8 +70,7 @@ struct HomeView: View {
                     .font(.title2).bold()
                     .foregroundStyle(.primary)
                 
-                if let topSongs = chartVM.topSongs {
-                    let top3Songs = Array(topSongs.items.prefix(3))
+                if let top3Songs = chartVM.topSongs?.prefix(3) {
                     HStack(spacing: 20) {
                         ForEach(Array(top3Songs.enumerated()), id: \.element.id) { index, song in
                             LuxurySongCell(index: index + 1, song: song)

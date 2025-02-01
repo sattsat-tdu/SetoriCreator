@@ -1,9 +1,9 @@
 //
 //  MusicKitManager.swift
 //  SetoriCreator
-//  
+//
 //  Created by SATTSAT on 2025/01/28
-//  
+//
 //
 
 import Foundation
@@ -12,6 +12,8 @@ import MusicKit
 enum MusicKitError: String, Error {
     case networkError
     case fetchAlbumsFailed
+    case fetchTopSongsFailed
+    case unknownError
 }
 
 @MainActor
@@ -99,4 +101,42 @@ final class MusicKitManager {
             return nil
         }
     }
+    
+    //トップソングを取得
+    func fetchTopSongs(limit: Int = 20) async -> Result<[Song], MusicKitError> {
+        do {
+            var request = MusicCatalogChartsRequest(
+                kinds: [.mostPlayed],
+                types: [Song.self]
+            )
+            request.limit = limit
+            let response = try await request.response()
+            
+            guard let songsChart = response.songCharts.first else {
+                print("[ERROR] トップソングチャートが見つかりません")
+                return .failure(.unknownError)
+            }
+            
+            return .success(Array(songsChart.items))
+        } catch {
+            print("[ERROR] TopSongの取得に失敗しました")
+            return .failure(.fetchTopSongsFailed)
+        }
+    }
+    
+    //曲からアーティストを取得
+    func songToArtist(_ song: Song) async -> Artist? {
+        do {
+            let songWithArtist = try await song.with([.artists])
+            guard let artists = songWithArtist.artists else {
+                print("[ERROR] fetch failed artists from \(song.title)")
+                return nil
+            }
+            return artists.first
+        } catch {
+            print("[ERROR] \(song.title)のアーティスト情報の取得に失敗")
+            return nil
+        }
+    }
 }
+

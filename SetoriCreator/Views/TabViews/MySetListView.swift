@@ -28,59 +28,61 @@ struct MySetListView: View {
     @State private var viewModels: [UUID: SetListViewModel] = [:]
     
     var body: some View {
-        ScrollView {
-            if !setLists.isEmpty {
-                //Finderのように3行表示
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(setLists, id: \.id) { setList in
-                        // 各セルごとに新しいインスタンスを作成
-                        let viewModel = viewModels[setList.id!] ?? {
-                            let newVM = SetListViewModel(setList)
-                            DispatchQueue.main.async {
-                                viewModels[setList.id!] = newVM
-                            }
-                            return newVM
-                        }()
-                        
-                        NavigationLink(
-                            destination:
-                                SetListDetailView()
-                                .environmentObject(viewModel),
-                            label: {
-                                SetListCell(setList: setList)
-                                    .environmentObject(viewModel)
-                            })
-                        .buttonStyle(PlainButtonStyle())
+        NavigationStack {
+            ScrollView {
+                if !setLists.isEmpty {
+                    //Finderのように3行表示
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(setLists, id: \.id) { setList in
+                            // 各セルごとに新しいインスタンスを作成
+                            let viewModel = viewModels[setList.id!] ?? {
+                                let newVM = SetListViewModel(setList)
+                                DispatchQueue.main.async {
+                                    viewModels[setList.id!] = newVM
+                                }
+                                return newVM
+                            }()
+                            
+                            NavigationLink(
+                                destination:
+                                    SetListDetailView()
+                                    .environmentObject(viewModel),
+                                label: {
+                                    SetListCell(setList: setList)
+                                        .environmentObject(viewModel)
+                                })
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                    .padding()
+                    .padding(.top)
+                } else {
+                    //セットリストが一つもなかったら、追加表示
+                    Button(action: {
+                        createFlg.toggle()
+                    }, label: {
+                        VStack(spacing: 20) {
+                            Image(systemName: "plus.square.on.square")
+                                .resizable()
+                                .scaledToFit()
+                            Text("セットリストを追加する")
+                                .font(.headline)
+                        }
+                        .frame(height: 80)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 50)
+                    })
+                    .fullScreenCover(isPresented: $createFlg) {
+                        CreateSetListView(isShowing: $createFlg)
                     }
                 }
-                .padding()
-                .padding(.top)
-            } else {
-                //セットリストが一つもなかったら、追加表示
-                Button(action: {
-                    createFlg.toggle()
-                }, label: {
-                    VStack(spacing: 20) {
-                        Image(systemName: "plus.square.on.square")
-                            .resizable()
-                            .scaledToFit()
-                        Text("セットリストを追加する")
-                            .font(.headline)
-                    }
-                    .frame(height: 80)
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity)
-                    .padding(.top, 50)
-                })
-                .fullScreenCover(isPresented: $createFlg) {
-                    CreateSetListView(isShowing: $createFlg)
-                }
-            }
 
+            }
+            .background(GradientBackground())
+            .navigationTitle("マイセットリスト")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .background(.mainBackground)
-        .navigationTitle("マイセットリスト")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

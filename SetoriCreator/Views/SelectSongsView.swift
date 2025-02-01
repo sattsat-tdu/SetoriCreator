@@ -99,7 +99,7 @@ struct SelectSongsView: View {
                     }
                     Section(header: Text("おすすめソング").fontWeight(.semibold)) {
                         if let topSongs = chartVM.topSongs {
-                            ForEach(topSongs.items, id: \.self) { song in
+                            ForEach(topSongs, id: \.self) { song in
                                 SongCell(song: song, mode: self.mode)
                                     .environmentObject(setListVM)
                                     .listRowInsets(EdgeInsets())
@@ -166,9 +166,6 @@ struct SelectSongsView: View {
             .padding()
             .background(Color("backGroundColor"))
             .onAppear {
-                Task {
-                    await chartVM.getTopArtist()
-                }
                 setListVM.initSetList(songs: self.songs)
             }
         }

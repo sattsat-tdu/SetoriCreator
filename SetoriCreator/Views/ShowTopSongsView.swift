@@ -34,7 +34,7 @@ struct ShowTopSongsView: View {
             .listRowSeparator(.hidden)  //区切り線を非表示
             
             if let topSongs = chartVM.topSongs {
-                ForEach(topSongs.items, id: \.self) { song in
+                ForEach(topSongs, id: \.self) { song in
                     SongCell(song: song, mode: .normal)
                 }
                 .listRowInsets(EdgeInsets())  //List内の余白を削除
