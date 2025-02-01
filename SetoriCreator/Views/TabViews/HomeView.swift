@@ -41,17 +41,10 @@ struct HomeView: View {
                                     parentflg: .constant(true))
                 }
             }
-            .background(.mainBackground)
+            .background(GradientBackground())
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
-            .navigationBarBackButtonHidden(true)    //左上邪魔だから消す
             .toolbar {
-                //                ToolbarItemGroup(placement: .automatic) {
-                //                    Spacer()
-                //                    Text("center")
-                //                    Spacer()
-                //                    Image(systemName: "plus")
-                //                }
                 ToolbarItem(placement: .principal) {
                     Text("セットリスト\nクリエイター")
                         .font(.headline)
@@ -77,8 +70,7 @@ struct HomeView: View {
                     .font(.title2).bold()
                     .foregroundStyle(.primary)
                 
-                if let topSongs = chartVM.topSongs {
-                    let top3Songs = Array(topSongs.items.prefix(3))
+                if let top3Songs = chartVM.topSongs?.prefix(3) {
                     HStack(spacing: 20) {
                         ForEach(Array(top3Songs.enumerated()), id: \.element.id) { index, song in
                             LuxurySongCell(index: index + 1, song: song)

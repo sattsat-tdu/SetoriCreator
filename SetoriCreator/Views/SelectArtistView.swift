@@ -163,8 +163,5 @@ struct SelectArtistView: View {
         }
         .animation(.easeInOut(duration: 0.3), value: focus)
         .navigationBarBackButtonHidden(true)
-        .task {
-            await chartVM.getTopArtist()
-        }
     }
 }

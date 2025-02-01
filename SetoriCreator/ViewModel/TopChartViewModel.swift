@@ -9,144 +9,48 @@
 import MusicKit
 import Combine
 
+@MainActor
 class TopChartViewModel: ObservableObject {
     @Published var topArtists: [Artist]?
-    @Published var topSongs: MusicCatalogChart<Song>? = nil
+    @Published var topSongs: [Song]? = nil
+    
+    private let manager = MusicKitManager.shared
     
     init() {
+        getTopSongs()
+    }
+    
+    private func getTopSongs() {
         Task {
-            await getTopSongs()
+            let request = await manager.fetchTopSongs()
+            switch request {
+            case .success(let songs):
+                self.topSongs = songs
+                await fetchTopArtist(songs)
+            case .failure(let error):
+                print("[ERROR] \(error.rawValue)")
+            }
         }
     }
     
-    @MainActor
-    private func getTopSongs() async {
-        do {
-            let request = MusicCatalogChartsRequest(
-                kinds: [.mostPlayed],
-                types: [Song.self]
-            )
-            let response = try await request.response()
-            if let songChart = response.songCharts.first {
-                self.topSongs = songChart
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    @MainActor
-    func getTopArtist() async {
-        do {
-            let request = MusicCatalogChartsRequest(
-                kinds: [.mostPlayed],
-                types: [Song.self]
-            )
-            let response = try await request.response()
-            if let songChart = response.songCharts.first {
-                var artistNames: Set<String> = []
-                for song in songChart.items {
-                    artistNames.insert(song.artistName)
-                    if artistNames.count >= 6 {
-                        break
-                    }
+    //Songからrecommend artistsを取得、MusicKitの使用上TopArtistは取得できないので、Song情報から取得
+    func fetchTopArtist(_ songs: [Song]) async {
+        self.topArtists = await withTaskGroup(of: Artist?.self) { group in
+            var artists: Set<Artist> = []
+            
+            for song in songs.prefix(10) {
+                group.addTask {
+                    await self.manager.songToArtist(song)
                 }
-
-                var fetchedArtists: [Artist] = []
-                for artistName in artistNames {
-                    let searchRequest = MusicCatalogSearchRequest(term: artistName, types: [Artist.self])
-                    let searchResponse = try await searchRequest.response()
-                    
-                    if let artist = searchResponse.artists.first {
-                        fetchedArtists.append(artist)
-                    }
-                }
-                self.topArtists = fetchedArtists
             }
-        } catch {
-            print("取得できませんでした: \(error)")
+            
+            for await artist in group {
+                if let artist = artist {
+                    artists.insert(artist)
+                }
+            }
+            
+            return Array(artists)
         }
     }
 }
-
-
-
-
-
-
-
-/*------------------------------------
- 
- 審査に引っかかった可能性があるコード↓
- 
- ------------------------------------*/
-
-//import MusicKit
-//import Combine
-//
-//class TopChartViewModel: ObservableObject {
-//    @Published var topArtists: [Artist]?
-//    @Published var topSongs: MusicCatalogChart<Song>? = nil
-//    
-//    init() {
-//        Task {
-//            await getTopSongs()
-//        }
-//    }
-//    
-//    //人気曲を取得
-//    @MainActor
-//    private func getTopSongs() {
-//        Task {
-//            do {
-//                let request = MusicCatalogChartsRequest(
-//                    kinds: [.mostPlayed], // Use kinds that are relevant for song charts.
-//                    types: [Song.self]
-//                )
-//                let response = try await request.response()
-//                if let songChart = response.songCharts.first {
-//                    self.topSongs = songChart
-//                }
-//            } catch {
-//                print(error)
-//            }
-//        }
-//    }
-//    
-//    //TopSongから、上位6名のアーティストを抽出する関数
-//    @MainActor
-//    func getTopArtist(){
-//        Task {
-//            let request = MusicCatalogChartsRequest(
-//                kinds: [.mostPlayed],
-//                types: [Song.self]
-//            )
-//            do {
-//                let response = try await request.response()
-//                if let songChart = response.songCharts.first {
-//                    var artistNames: Set<String> = []
-//                    for song in songChart.items {
-//                        artistNames.insert(song.artistName)
-//                        if artistNames.count >= 6 {
-//                            break   //アーティスト数は6を超えたらforを終了
-//                        }
-//                    }
-//                    
-//                    // 取得したアーティスト名からアーティストを検索、格納
-//                    var fetchedArtists:[Artist] = []
-//                    for artistName in artistNames {
-//                        let searchRequest = MusicCatalogSearchRequest(term: artistName, types: [Artist.self])
-//                        let searchResponse = try await searchRequest.response()
-//                        
-//                        if let artist = searchResponse.artists.first {
-//                            fetchedArtists.append(artist)
-//                        }
-//                    }
-//                    self.topArtists = fetchedArtists
-//                }
-//            } catch {
-//                print("取得できませんでした")
-//            }
-//        }
-//    }
-//}

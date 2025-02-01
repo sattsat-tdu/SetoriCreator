@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MusicKit
 
 struct MySetListView: View {
     
@@ -24,6 +25,8 @@ struct MySetListView: View {
     
     @State private var createFlg = false
     
+    @State private var viewModels: [UUID: SetListViewModel] = [:]
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -31,14 +34,22 @@ struct MySetListView: View {
                     //Finderのように3行表示
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(setLists, id: \.id) { setList in
-                            let getItemVM = GetItemViewModel() // 各セルごとに新しいインスタンスを作成
+                            // 各セルごとに新しいインスタンスを作成
+                            let viewModel = viewModels[setList.id!] ?? {
+                                let newVM = SetListViewModel(setList)
+                                DispatchQueue.main.async {
+                                    viewModels[setList.id!] = newVM
+                                }
+                                return newVM
+                            }()
+                            
                             NavigationLink(
                                 destination:
-                                    SetListDetailView(setList: setList)
-                                    .environmentObject(getItemVM),
+                                    SetListDetailView()
+                                    .environmentObject(viewModel),
                                 label: {
                                     SetListCell(setList: setList)
-                                        .environmentObject(getItemVM)
+                                        .environmentObject(viewModel)
                                 })
                             .buttonStyle(PlainButtonStyle())
                         }
@@ -68,7 +79,7 @@ struct MySetListView: View {
                 }
 
             }
-            .background(.mainBackground)
+            .background(GradientBackground())
             .navigationTitle("マイセットリスト")
             .navigationBarTitleDisplayMode(.inline)
         }

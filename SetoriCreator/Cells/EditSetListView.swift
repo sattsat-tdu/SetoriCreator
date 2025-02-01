@@ -138,11 +138,11 @@ struct EditSetListView: View {
 }
 
 #Preview {
-    let previewContext = CoreDataController().container.viewContext
-    let testSetList = SetList(context: previewContext)
+    let context = CoreDataController.shared.saveContext
+    let testSetList = SetList(context: context)
     testSetList.name = "テストセットリスト"
     testSetList.image = UIImage(named: "testArtist")?.pngData()
     testSetList.songsid = ["", ""] as NSObject
     return EditSetListView(flg: .constant(true), setList: testSetList)
-        .environment(\.managedObjectContext, previewContext)
+        .environment(\.managedObjectContext, context)
 }

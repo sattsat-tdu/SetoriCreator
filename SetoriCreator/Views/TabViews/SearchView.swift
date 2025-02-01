@@ -19,39 +19,8 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                //検索表示
-                HStack(spacing: 15) {
-                    Image(systemName: "magnifyingglass")
-                        .font(.system(size: 23, weight: .bold))
-                        .foregroundColor(.gray)
-                    
-                    TextField("音楽を検索する...", text: $viewModel.searchTerm)
-                        .keyboardType(.default)
-                        .focused(self.$focus)
-                        .submitLabel(.search)  // ここで「検索」ボタンを表示するように指定
-                        .toolbar { //キーボードに閉じるボタンを付与
-                            ToolbarItemGroup(placement: .keyboard) {
-                                Spacer()         // 右寄せにする
-                                Button("閉じる") {
-                                    focus = false
-                                }
-                            }
-                        }
-                    
-                    if focus {
-                        Button(action: {
-                            focus = false
-                            viewModel.searchTerm = ""
-                        }, label: {
-                            Text("キャンセル")
-                                .foregroundStyle(.primary)
-                        })
-                    }
-                }
-                .padding(.vertical,10)
-                .padding(.horizontal)
-                .background(Color.primary.opacity(0.05))
-                .clipShape(.rect(cornerRadius: 8))
+                
+                searchBox.padding()
                 
                 List {
                     if let searchResponse = viewModel.searchResponse {
@@ -100,7 +69,7 @@ struct SearchView: View {
                     
                     Section(header: Text("おすすめソング").fontWeight(.semibold)) {
                         if let topSongs = chartVM.topSongs {
-                            ForEach(topSongs.items, id: \.self) { song in
+                            ForEach(topSongs, id: \.self) { song in
                                 SongCell(song: song, mode: .normal)
                                     .listRowInsets(EdgeInsets())
                             }
@@ -108,19 +77,48 @@ struct SearchView: View {
                     }
                 }
                 .scrollContentBackground(.hidden)
-                .padding(-15)
-                
-                Spacer()
-            }
-            .padding()
-            .background(Color("backGroundColor"))
-            .onAppear {
-                Task {
-                    await chartVM.getTopArtist()
-                }
             }
         }
+    }
+}
 
+//MARK: Views
+extension SearchView {
+    
+    private var searchBox: some View {
+        //検索表示
+        HStack(spacing: 16) {
+            Image(systemName: "magnifyingglass")
+                .font(.system(size: 24, weight: .bold))
+                .foregroundColor(.gray)
+            
+            TextField("音楽を検索する...", text: $viewModel.searchTerm)
+                .keyboardType(.default)
+                .focused(self.$focus)
+                .submitLabel(.search)
+                .toolbar { //キーボードに閉じるボタンを付与
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()         // 右寄せにする
+                        Button("閉じる") {
+                            focus = false
+                        }
+                    }
+                }
+            
+            if focus {
+                Button(action: {
+                    focus = false
+                    viewModel.searchTerm = ""
+                }, label: {
+                    Text("キャンセル")
+                        .foregroundStyle(.primary)
+                })
+            }
+        }
+        .padding(.vertical,10)
+        .padding(.horizontal)
+        .background(Color.primary.opacity(0.1))
+        .clipShape(.rect(cornerRadius: 8))
     }
 }
 
